@@ -1,0 +1,45 @@
+.header{
+position: absolute;
+width: 1200px;
+height: 120px;
+left: -1px;
+top: 0px;
+
+
+background: #FFFFFF;
+border-bottom: 2px solid black;
+}
+
+.header-image{
+    position: absolute;
+    width: 151px;
+    height: 120px;
+    left: 515px;
+    
+    
+    
+    }
+
+.header-text{
+position: absolute;
+width: 643px;
+height: 38px;
+left: 400px;
+top: 41px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 36px;
+line-height: 42px;
+
+color: #000000;
+}
+
+.click{
+    color:red
+}
+.click:hover{
+    color:palevioletred;
+
+}

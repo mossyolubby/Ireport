@@ -1,0 +1,68 @@
+.navbar{
+margin-top:120px;
+background-color: blue;
+padding:20px;
+padding-bottom: 0;
+margin-left: 0;
+}
+
+.navbar-container{
+    display:flex;
+    flex-direction:row;
+    background-color: chartreuse;
+    padding-bottom: 0;
+    
+
+
+}
+
+.ireport-logo{
+position: absolute;
+width: 50px;
+height:10px;
+left: 10px;
+margin-top:0px;
+
+
+}
+
+.nav-menu{
+list-style-type: none;
+  padding:10px;
+  overflow: hidden;
+  background-color: #01061e;
+  display:flex;
+  margin-left:80px;
+  margin-bottom: 0;
+}
+
+.nav-item{
+    padding:5px;
+    
+}
+
+.nav-Links{
+    text-decoration: none;
+    color: cornsilk;
+    padding:5px;
+}
+.nav-Links-post{
+      margin-left:150px;
+      font-weight: bolder;
+      font-size:medium;
+}
+
+.nav-Links-mobile{
+    color:cornsilk;
+    margin-left:0;
+}
+
+.btn{
+    padding:3px;
+    width:100px;
+}
+
+.nav-Links:hover{
+    color:crimson
+
+}
