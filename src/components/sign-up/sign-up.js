@@ -1,126 +1,98 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-//import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import CustomButton from '../custom-button/custom-button';
+import React, {Component} from 'react';
+import './sign-up.css';
+import CustomButton from '../custom-button/custom-button'
+import { Link } from 'react-router-dom';
+import axios from 'axios'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        IReport
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+export default class SignUp extends Component{
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+  state = {};
+  handleSubmit = e=> {
+    e.preventDefault();
 
-export default function SignUp() {
-  const classes = useStyles();
+    const data = {
+      username:this.username,
+      email:this.email,
+      password: this.password
+      
+    }
+    axios.post(' https://i-report-project.herokuapp.com/api/all/signup',data).then(
+      res => {
+        console.log(res)
+        this.props.history.push('/area-of-interest')
+      }
+    ).catch(
+      err => {
+        this.setState({
+          message:err.response.data.message
+        })
+      }
+    )
 
-  return (
-    <Container component="main" maxWidth="xs" className='container'>
-      <CssBaseline />
-      <div className={classes.paper}>
+    
+  }
 
-         <img src='images/ireportlogo.png' alt='IReport' width='100px' /> 
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label=" confirm Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="By signup you already agreed to the terms and condition of our service."
-              />
-            </Grid>
-          </Grid>
-          <CustomButton
-            
-          >
-            Sign Up
-          </CustomButton>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/signin" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+    render(){
+      let error ='';
+
+      if (this.state.message) {
+        error = (
+          <div className= "alert alert-danger" role="alert">
+            {this.state.message}
+          </div>
+        )
+      }
+        return(
+          <div className= "auth-wrapper">
+            <div className="auth-inner">
+            <form onSubmit={this.handleSubmit}>
+                 {error}
+                <h3>Sign Up</h3>
+
+                <div className="form-group">
+                    <label>Username</label>
+                    <input type="username" className="from-control" placeholder="username"
+                    onChange = {e => this.username= e.target.value}/>
+                </div>
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="email" className="from-control" placeholder="email"
+                    onChange = {e=> this.email= e.target.value} />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="from-control" placeholder="password"
+                    onChange = {e=> this.password= e.target.value}/>
+                </div>
+
+                
+
+                <div className="form-check">
+                <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckChecked"
+                
+                />
+                 <label className="form-check-label">
+                 "By signup you already agreed to the terms and condition of our service."
+               </label>
+               </div>
+               
+
+
+                <CustomButton><Link to='/area-of-interest'>Sign Up</Link></CustomButton>
+
+                <h6>Already have an account? <Link to ='/signin'>Signin</Link></h6>
+
+                
+
+            </form>
+            </div>
+            </div>
+
+        )
+    }
 }

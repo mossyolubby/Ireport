@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import { Nav } from 'react-bootstrap';
 
 
 
-function Navbar() {
-    const [click, setClick] = useState(false);
 
+function NavBar(
+
+
+    ) {
+      const [click, setClick] = useState(false);
+	
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
     return (
@@ -82,4 +89,9 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+    
+    export default NavBar;
+    
+
+
+

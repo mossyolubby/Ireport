@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
 import './header.css';
@@ -6,7 +7,8 @@ import './header.css';
 
 function Header () {
     return (
-        <div className= 'header'>
+       
+        <div className= 'bg-light p-8 rounded-lg m-12 header'>
             <div className='header-text'>
             Something on your mind <Link to='/thought-and-opinion' className='click'>click</Link> to share
             </div>

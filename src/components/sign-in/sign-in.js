@@ -1,71 +1,93 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import CustomButton from '../custom-button/custom-button';
-import FormInput from '../form-input/form-input';
+//import FormInput from '../form-input/form-input';
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import ForgotPassword from '../Pages/forgot-password/forgot-password';
 import './sign-in.css'
+import axios from 'axios';
+//import {setUserSession} from '../../Utils/common'
 
-class SignIn extends React.Component{
-    constructor(props){
-        super(props);
 
-        this.state = {
-            email: '',
-            password: '',
+export default class SignIn extends Component{
+  state = {}
+
+    handleSubmit = e=> {
+      e.preventDefault();
+  
+      const data = {
+        email:this.email,
+        password: this.password,
+        
+      }
+      axios.post(' https://i-report-project.herokuapp.com/api/all/login',data)
+      .then(res => {
+          console.log(res)
+          localStorage.setItem('token',res.data.token)
+          this.setState({
+            signIn:true
+          });
+          this.props.setUser(res.data.user);
+        })
+        .catch(
+        err => {
+          this.setState({
+            message:err.response.data.message
+          })
         }
+      )
+  
+      
     }
+  
+      render(){
+        if(this.state.signIn){
+          return <Redirect to ={'/'} />
 
-    handleSubmit = event => {
-        event.preventDefault();
+        }
+          let error ='';
 
-        this.setState({ email: '', password: ''})
-    }
+          if (this.state.message) {
+            error = (
+              <div className= "alert alert-danger" role="alert">
+                {this.state.message}
+              </div>
+            )
+          }
+ 
+ 
+ 
+ 
+          
+          return(
+            <div className= "auth-wrapper">
+              <div className="auth-inner">
+              <form onSubmit={this.handleSubmit}>
+                       {error}
+                  <h3>Sign In</h3>
+                  <div className="form-group">
+                      <label>Email</label>
+                      <input type="email" className="from-control" placeholder="email"
+                      onChange = {e=> this.email= e.target.value} />
+                  </div>
+  
+                  <div className="form-group">
+                      <label>Password</label>
+                      <input type="password" className="from-control" placeholder="password"
+                      onChange = {e=> this.password= e.target.value}/>
+                  </div>
+  
+                  <CustomButton type='submit'>Sign In</CustomButton>
 
-    handleChange = event => {
-        const { value, name} = event.target;
+                  <p className='forgotpassword text-right'><Link to = '/forgot-password'>Forgot Password?</Link></p>
 
-        this.setState({[name]: value})
-    }
+                  <div className='signupLink'>Don't have an account? <Link to= '/signup' className='signuplink'>SIGNUP</Link> </div>
 
-    render() {
-        return(
-            <div className='container'>
-            <div className='signin'> 
-            <div className='signlogo'><img src= 'images/ireportlogo.png' alt= '' className='signimage' width='100px'/></div>
-                <div className= 'signtitle'>Signin</div>
-                <div className='signincontainer'>
-                <form onSubmit={this.handleSubmit}>
-            
-                    <FormInput 
-                    name='email' 
-                    type='email'
-                    placeholder='email'
-                    handleChange={this.handleChange} 
-                    value={this.state.email}
-                    required
-                    />
-
-                    
-                    <FormInput 
-                    name='password' 
-                    type='password' 
-                    placeholder='password'
-                    handleChange={this.handleChange}
-                    value={this.state.email} 
-                    required/>
-
-                    <CustomButton type='submit'>Signin</CustomButton> 
-                    <Link to='/forgot-password' className='forgot-password' >Forgot Password?</Link> 
-
-                    <div className='signupLink'>Don't have an account? <Link to= '/signup' className='signuplink'>SIGNUP</Link> </div>
-         
-                
-                </form>
-                </div>
-
-            </div>
-            </div>
-        )
-    }
-}
-
-export default SignIn;
+  
+              </form>
+              </div>
+              </div>
+  
+          )
+      }
+  }
