@@ -11,17 +11,19 @@ class BootstrapNavbar extends React.Component{
        localStorage.clear();
        this.props.setUser(null);
     };
+
+    
     render(){
-        let buttons;
+        // let buttons;
 
-        if (this .props.user){
-            buttons = ( <Nav.Link href="/" onClick={this.handleLogout}>SignOut</Nav.Link>
-          )
+        // if (this .props.user){
+        //     buttons = ( <Nav.Link href="/" onClick={this.handleLogout}>SignOut</Nav.Link>
+        //   )
 
-        }else{
-          buttons = ( <Nav.Link href="/signin">SignIn</Nav.Link>
-          )
-        }
+        // }else{
+        //   buttons = ( <Nav.Link href="/signin">SignIn</Nav.Link>
+        //   )
+        // }
 
 
         return(
@@ -43,12 +45,21 @@ class BootstrapNavbar extends React.Component{
                                     <Nav.Link href="/food">Food</Nav.Link>
                                     <Nav.Link href="/tech">Tech</Nav.Link>
                                     <Nav.Link href="/thought-and-opinion">Thought&Opinion</Nav.Link>
+                                    <Nav.Link href="/register">register</Nav.Link>
                                     <Nav.Link href="/post" className='post'><Button className='btn'>Post</Button></Nav.Link>                
-                                     
+                                    {
+                                        
+                                      this.props.user ? 
+                                      <Nav.Link href="/" onClick={this.handleLogout}>SignOut</Nav.Link>
+                                      :
+                                      <Nav.Link href="/signin">SignIn</Nav.Link>
+
+                
+                                    }
                                     </Nav>
                                     </Navbar.Collapse>
                             </Navbar>
-                            {buttons}
+                        {/* {buttons} */}
                             
                     </div>
                 </div>

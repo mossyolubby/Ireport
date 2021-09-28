@@ -1,97 +1,102 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import './navbar.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
-import { Nav } from 'react-bootstrap';
+import './navbar.css';  
+import "bootstrap/dist/css/bootstrap.css";
+import { Navbar,Nav,Button } from 'react-bootstrap'
+import AuthService from '../../services/auth.service';
 
 
+export default class NavBar extends Component{
+  constructor(props){
+    super(props);
 
+    this.logOut = this.logOut.bind(this);
 
-function NavBar(
+    this.state = {
+      currentUser:undefined
+    }  
+    
+    
+  }
 
+   componentDidMount(){
+     const user = AuthService.getCurrentUser();
 
-    ) {
-      const [click, setClick] = useState(false);
-	
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
-    return (
-        <>
-           <nav className="navbar">
-               <div className="navbar-container">
-               <Link to="/" className="ireport-logo"><img src='images/ireportlogo.png' alt='Ireport logo' width='100px'/>
-                  </Link>
-                  <div className='menu-icon' onClick={handleClick}>
-                      <i className={click ? 'as fa-times': 'fas a-bars'}/>
-                  </div>
-                  <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                      <li className='nav-item'>
-                          <Link to='/' className='nav-Links' onClick={closeMobileMenu}>
-                              Home
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/politics' className='nav-Links' onClick={closeMobileMenu}>
-                              Politics
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/business' className='nav-Links' onClick={closeMobileMenu}>
-                              Business
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/sport' className='nav-Links' onClick={closeMobileMenu}>
-                              Sport
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/health' className='nav-Links' onClick={closeMobileMenu}>
-                              Health
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/entertainment' className='nav-Links' onClick={closeMobileMenu}>
-                              Entertainment
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/food' className='nav-Links' onClick={closeMobileMenu}>
-                              Food
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/tech' className='nav-Links' onClick={closeMobileMenu}>
-                              Tech
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/thought-and-opinion' className='nav-Links' onClick={closeMobileMenu}>
-                              Thought&Opinion
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/post' className='nav-Links-post' onClick={closeMobileMenu}>
-                            <button className='btn'>Post</button>
-                          </Link>
-                      </li>
-                      <li className='nav-item'>
-                          <Link to='/signin' className='nav-Links-mobile' onClick={closeMobileMenu}>
-                              Signin
-                          </Link>
-                      </li>
-                  </ul>
+     //console.log('getCurrentUser', user)
 
-               </div>
-            </nav> 
-        </>
+    if(user){
+      
+       this.setState({
+        currentUser:user,
+        
+
+      })
+     }
+   }
+
+  logOut(){
+    this.setState({
+      currentUser:null,
+    })
+    AuthService.logout(
+       this.props.history.push("/"),
+        window.location.reload()
     );
+  }
+ 
+ render(){
+     const{ currentUser} = this.state;
+
+     return(
+         <div className='main'>
+             <div className="row">
+                 <div className="col-md-12">
+                     
+                         <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
+                             <Navbar.Brand href="/" id="logo"><img src='images/ireportlogo.png' alt='Ireport logo' width='100px'/></Navbar.Brand>
+                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                             <Navbar.Collapse id="basic-navbar-nav">
+                                 <Nav className="mr-auto">
+                                 <Nav.Link href="/" id="nblink">Home</Nav.Link>
+                                 <Nav.Link href="/politics" id="nblink">Politics</Nav.Link>
+                                 <Nav.Link href="/business" id="nblink">Business</Nav.Link>
+                                 <Nav.Link href="/sport" id="nblink">Sport</Nav.Link>
+                                 <Nav.Link href="/health" id="nblink">Health</Nav.Link>
+                                 <Nav.Link href="/entertainment" id="nblink">Entertainment</Nav.Link>
+                                 <Nav.Link href="/food" id="nblink">Food</Nav.Link>
+                                 <Nav.Link href="/tech" id="nblink">Tech</Nav.Link>
+                                 {/* {console.log(currentUser)} */}
+                                 {currentUser &&<Nav.Link href="/thought-and-opinion" id="nblink">Thought&Opinion</Nav.Link>}
+                                 
+                                  {currentUser &&<Nav.Link href="/post" className='post'><Button className='btn'>Post</Button></Nav.Link>}                
+                                  
+                                  {currentUser ? (
+                                  <div className="navbar-nav ml-auto">
+          
+                                  <Nav.Link href="/profile" id="nblink">{currentUser.username}</Nav.Link>
+                                 <Nav.Link href="/login" id= "nblink" onClick={this.logOut}>SignOut</Nav.Link>
+              
+                                  </div>
+                                    ) : (
+                                  <div className="navbar-nav ml-auto">
+              
+                                 <Nav.Link href="/login" id="nblink" >SignIn</Nav.Link>
+                                 
+                                 <Nav.Link href="/register" id="nblink">SignUp</Nav.Link>
+                                    </div>
+                                  )}
+                                  
+                                            
+                                   </Nav>
+                                 </Navbar.Collapse>
+                         </Navbar>
+                     {/* {buttons} */}
+                         
+                 </div>
+             </div>
+         </div>
+     )  
+ }
+
+
 }
-
-    
-    export default NavBar;
-    
-
-
-

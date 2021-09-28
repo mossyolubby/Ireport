@@ -43,7 +43,8 @@ list-style-type: none;
 
 .nav-Links{
     text-decoration: none;
-    color: cornsilk;
+    color: white;
+    font-weight:bolder;
     padding:5px;
 }
 .nav-Links-post{
@@ -66,4 +67,15 @@ list-style-type: none;
 .nav-Links:hover{
     color:crimson
 
+}
+
+#nblink{
+    
+    font-weight: bold;
+    font-size: 20px;
+    padding:10px;
+}
+
+#logo{
+    background-color: blanchedalmond;
 }

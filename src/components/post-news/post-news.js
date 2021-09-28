@@ -1,169 +1,206 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import './post-news.css';
+import axios from 'axios';
+import React, {Component} from 'react';
 import CustomButton from '../custom-button/custom-button';
-import AreaOfInterest from '../Pages/area-of-interest/area-of-interest';
+import { Link } from 'react-router-dom';
+import authHeader from '../../services/auth-header';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/post">
-        Post News
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+//import ImageUploader from 'react-images-upload';
+
+
+//const categories= ['politics', 'business', 'sport','entainment','health','food', 'tech', 'thoughtandopinion'];
+const apiUrl = "https://i-report-project.herokuapp.com/api/"
+
+
+
+
+class PostNews extends Component{
+  constructor(props){
+    super(props);
+  
+    this.handleTitleChange= this.handleTitleChange.bind(this)
+    this.handleAreaOfReportChange= this.handleAreaOfReportChange.bind(this)
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleImageChange = this.handleImageChange.bind(this)
+    
+
+     this.state ={
+       title:'',
+       areaOfReport:[],
+       description:'',
+       image: [] 
+     };
+  
+  }
+
+
+//   componentDidMount = async() => {
+//     debugger
+//     await axios
+//     .get(apiUrl + 'all/categories')
+//     .then(response => {
+//       this.setState({ areaOfReport: response.data });
+//     })
+//     .catch(function(error) {
+//       console.log(error);
+//     });
+// }  
+
+componentDidMount(){
+  debugger;
+  const self= this;
+
+  axios.get(apiUrl + 'all/categories', {
+   
+  })
+  .then(function(response){
+
+  self.setState({areaOfReport:response.data})
+console.log(response.data);
+      
+  }).catch(function(error){
+      console.log('error is', error);
+  })
+
+  
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+      handleSubmit(event) {
+        // const payload = {
+        //   title:this.state.title,
+        //   areaOfReport:this.state.areaOfReport,
+        //   description:this.state.description,
+        //   image:this.state.image
+        // };
+        // console.log(payload)  
+        const formData = new FormData();
+        formData.append("title", this.state.title);
+        formData.append("areaOfReport", "politics");
+        formData.append("description", this.state.description);
+        formData.append("image", this.state.image);
+        console.log(formData);
+        formData.forEach(d => console.log(d))
+        //debugger;
+        const header = authHeader();
+        console.log(header);
+    axios.post(apiUrl + 'user/post/create', 
+    formData,
+       {headers:header})
+    .then(function(response){
+      console.log('response from add post is ', response)
+      // History.push('/')
+      this.props.history.push("/");
+          window.location.reload();
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+      event.preventDefault();
+    }
+  
+  handleTitleChange(e){
+    this.setState({title:e.target.value})
+  }
+  
+  handleAreaOfReportChange(e){
+    this.setState({areaOfReport:e.target.value})
+  }
+  
+  handleDescriptionChange(e){
+    this.setState({description:e.target.value})
+  }
 
-export default function PostNews() {
-  const classes = useStyles();
+  handleImageChange(e) {
+    const picture = e.target.files[0];
+    console.log(picture)
+    this.setState({
+     image: picture
+    });
+  }
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-      <img src='images/ireportlogo.png' alt='IReport' width='100px' />
+  
+  postNews(){
+    const header = authHeader();
+    axios.post(apiUrl + '/user/post/create', {
+      title:this.state.title,
+      areaOfReport:this.state.areaOfReport,
+      description:this.state.description
+    }, {headers:header})
+    .then(function(response){
+      console.log('response from add post is ', response)
+      // History.push('/')
+      this.props.history.push("/");
+          window.location.reload();
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+  }
+  
+  
+  
+    render(){
+      return(
+        <div className='col-md-12'>
+          <div className='card card-container'>
+        
+          <img src='images/ireportlogo.png' alt='IReport' width="100px" id="logo"/> 
+          <br styles= "clear:both" />
+            <form onSubmit={this.handleSubmit}>
+              {/* <br styles= "clear:both" /> */}
+              <div className="form-group">
+             <input type="text" onChange={this.handleTitleChange} 
+             className="form-control" id="title" name="title" placeholder="Title" required />
+             </div>
+             <br styles= "clear:both" />
 
-        <Typography component="h1" variant="h5">
-          Post News
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="Title"
-                label="Title"
-                type="text"
-                id="title"
-                autoComplete="title"
-              />
-            </Grid>
-            
-            <Grid item xs={12} className='select'>
-            <select className='areaOfReport'
-            id="topics" 
-            name="topics"
-            type="text"
-            required
-            label="Area of Report">
-            <option className='option' value="">Select Area of Report</option>
-            <option className='option' value="politics">Politics</option>
-            <option className='option' value="business">Business</option>
-            <option className='option'  value="health">Health</option>
-            <option className='option'  value="sport">Sport</option>
-            <option className='option'  value="tech">Tech</option>
-            <option className='option'  value="food">Food</option>
-            <option className='option'  value="entertainment">Entertainment</option>
-            </select>
-            </Grid>
-            
-            <Grid item xs={12}>
-            <textarea className='description'
-            rows="4" 
-            cols="50"
-            fullWidth
-            label="Describe your news.."
-            placeholder='Describe your news...'
-             name="comment">
-            </textarea>
-            </Grid>
+              <div className='form-group'>
+              <label>Area Of Report:
+                <select 
+                onChange={this.handleAreaOfReportChange} 
+                 ref={(input) => this.areaOfReport = input} 
+                >
+                 {this.state.areaOfReport.map(function (areaOfReports,index){
+                 
+                 <option key={index} value={areaOfReports.name}>{areaOfReports.name}</option>
+                 })}
+                 
+                </select>
+                </label>
+              </div>
+              <br styles= "clear:both" />
 
-            <Grid item xs={12}>
-              <TextField
-                name="img"
-                label="Upload pictures"
-                type="file"
-                id="img"
-                accept="image/*"
-              /><h6>JPG,PGN max 2MB</h6>
-            </Grid>
+              <div className="form-group">
+                <label> News Description:
+              <textarea className="form-control" 
+              onChange={this.handleDescriptionChange} 
+              type="textarea" 
+              id="subject" 
+              placeholder="Subject" 
+              maxlength="140"
+               rows="7">
+              </textarea>
+              </label>
+              </div>
+               <div className="form-group">
+              <label for="avatar">upload your image</label>
+               <input type="file"
+               onChange={this.handleImageChange}
+               id="image" name="image"
+               accept="image/png, image/jpeg" />
+                </div> 
 
-            <Grid item xs={12}>
-              <TextField
-                name="video"
-                label="Upload Video"
-                type="file"
-                id="video"
-                accept="video/*"
-              /><h6>max 30MB</h6>
-            </Grid>
+              <div className="form-group">
+              <CustomButton >Post News</CustomButton>
+              </div>
+  
+              <button type="button" id="submit" name="submit" className="btn"><Link href='/'>Cancel</Link></button>
+  
+            </form>
+        </div>
+        </div>
+      )
+    }
+  }
 
-
-            
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="This is a geniue news"
-              />
-            </Grid>
-            
-          </Grid>
-          <Link href = '/area-of-interest'>
-          <CustomButton type = 'submit'>
-            Post News
-          </CustomButton>
-          </Link>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/" variant="body2">
-                Back
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
-}
+  export default PostNews;

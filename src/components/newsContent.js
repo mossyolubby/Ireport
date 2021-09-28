@@ -2,15 +2,15 @@ import { createContext } from "react"
 import React,{createContext, useEffect, useState} from 'react'
 import axios from 'axios'
 
-export const NewsContext = createContent();
+export const NewsContext = createContext();
 
 const NewsContextProvider = (props) => {
     const [data, setData] = useState ([]);
-    const apikey = " ";
+    const apikey = " https://i-report-project.herokuapp.com/api/all/posts ";
 
     useEffect(()=>{
-        anxios
-        .get (`https: = ${apikey}`
+        axios
+        .get (`/categories: = ${apikey}`
         )
         .then((response)=>setData(response.data()))
         .catch((error)=> console.log(error));

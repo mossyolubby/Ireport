@@ -1,4 +1,4 @@
-.areaOfReport{
+/* .areaOfReport{
     width:395px;
     height:50px;
     padding:10px;
@@ -13,3 +13,50 @@
     font-size: 16px;
     font-weight: bold;
 }
+ */
+
+  
+  /* .post {
+    background: #FFFFFF;
+    padding: 20px;
+    margin: 10px 0 10px 0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.10);
+  } */
+  
+  .post-form {
+    background: #90caf9 ;
+    padding: 20px;
+  }
+  
+  .content {
+    margin-left: 5px;
+  }
+  
+  .formError {
+    margin-left: 5px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .card-container.card {
+    max-width: 350px !important;
+    padding: 40px 40px;
+  }
+  
+  .card {
+    background-color: #f7f7f7;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+
+

@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import axios from 'axios';
+import { BrowserRouter} from 'react-router-dom';
+//import axios from 'axios';
+//import { Provider } from 'react-redux';
 
-axios.defaults.baseURL = 'https://i-report-project.herokuapp.com';
-axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.getItem('token');
+//axios.defaults.baseURL = 'https://i-report-project.herokuapp.com/api/';
+//axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.getItem('token');
 
-ReactDOM.render(<App />,document.getElementById
+ReactDOM.render(
+
+<BrowserRouter>
+<App />
+</BrowserRouter>
+
+,document.getElementById
   ('root'));
 

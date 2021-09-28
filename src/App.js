@@ -12,48 +12,57 @@ import Entertainment from "./components/Pages/entertainment";
 import Food from "./components/Pages/food";
 import Tech from "./components/Pages/tech";
 import ThoughtAndOpinion from "./components/Pages/Thought-and-opinion/thought-and-opinion";
-import SignInAndSignUpPage from "./components/Pages/sign-in-and-sign-up-page/sign-in-and-sign-up";
+//import SignInAndSignUpPage from "./components/Pages/sign-in-and-sign-up-page/sign-in-and-sign-up";
 import PostNews from "./components/post-news/post-news";
-import SignUp from "./components/sign-up/sign-up";
+import SignUp from "./components/sign-up/SingnUp";
 import AreaOfInterest from "./components/Pages/area-of-interest/area-of-interest";
 //import NavBar from './components/Navbar/navbar'
 import ForgotPassword from "./components/Pages/forgot-password/forgot-password";
-import BootstrapNavbar from './components/MainNav/main-nav'
-import axios from 'axios';
-import SignIn from "./components/sign-in/sign-in";
+//import BootstrapNavbar from './components/MainNav/main-nav';
+import NavBar  from "./components/Navbar/navbar";
+//import axios from 'axios';
 import Reset from "./components/Pages/Reset/reset";
+import Register from "./components/Register/register";
+//import PostForm from "./components/post-news/post-form";
+import Login from "./components/login/login";
+import AuthService from "./services/auth.service";
+import Profile from "./components/userProfile/profile";
+//import Feed from "./components/post-news/news-feed";
+//import Feed from "./components/post-news/news-feed";
+//import AuthService from "./services/auth.service";
+//import CarouselHeader from "./components/Navbar/navbar";
+
 
 
 class App extends React.Component{
-  state ={};
+  constructor(props){
+    super(props) 
 
-  componentDidMount =() => {
-       
-    axios.get('user').then(
-        res => {
-            this.setState(res.data);
-        },
-        err => {
-            console.log(err)
-        }
-    )
+      this.state = {
+        currentUser:undefined
+      }
+    }
 
+    componentDidMount(){
+      const user = AuthService.getCurrentUser();
+
+      if (user) {
+          this.setState({
+          currentUser:user
+          })
+      }
     
-};
+  }
 
-setUser = user => {
-  this.setState ({
-    user: user
-  })
-}
-
+  
   
   render (){
   return (
 
     <Router>
+  
      <Header />
-     <BootstrapNavbar user={this.state.user} setUser={this.setUser}/>
+     <NavBar currentUser={this.state.currentUser} />
      
       <Switch>
         <Route path='/' exact component={() => <Home user={this.state.user}/>} />
@@ -66,14 +75,20 @@ setUser = user => {
         <Route path='/tech'  component={Tech} />
         <Route path='/thought-and-opinion'  component={ThoughtAndOpinion} />
         <Route path='/post'  component={PostNews} />
-        <Route path='/signin'  component={() => <SignIn setUser={this.setUser}/>} />
+      
         <Route path= '/signup' component={SignUp} />
         <Route path= '/area-of-interest' component={AreaOfInterest} />
+        <Route path= '/forgot-password' component={ForgotPassword} />
         <Route path= '/reset:id' component={Reset} />
+        <Route path='/register' component={Register} />
+        <Route path='/login' component={Login} />
+        <Route path='/profile' component={Profile} />
+        
       
         
         
       </Switch>
+      {/* <Feed /> */}
     </Router>
   
   );
