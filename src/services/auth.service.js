@@ -37,9 +37,12 @@ class AuthService {
             email,
             password
         });
+        
     }
+    
     getCurrentUser(){
         //console.log('inside getCurrentUser')
+        
         return JSON.parse(localStorage.getItem('user'));
     }
 }

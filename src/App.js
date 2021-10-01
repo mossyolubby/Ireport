@@ -12,7 +12,6 @@ import Entertainment from "./components/Pages/entertainment";
 import Food from "./components/Pages/food";
 import Tech from "./components/Pages/tech";
 import ThoughtAndOpinion from "./components/Pages/Thought-and-opinion/thought-and-opinion";
-//import SignInAndSignUpPage from "./components/Pages/sign-in-and-sign-up-page/sign-in-and-sign-up";
 import PostNews from "./components/post-news/post-news";
 import SignUp from "./components/sign-up/SingnUp";
 import AreaOfInterest from "./components/Pages/area-of-interest/area-of-interest";
@@ -27,10 +26,8 @@ import Register from "./components/Register/register";
 import Login from "./components/login/login";
 import AuthService from "./services/auth.service";
 import Profile from "./components/userProfile/profile";
-//import Feed from "./components/post-news/news-feed";
-//import Feed from "./components/post-news/news-feed";
+import ChangePassword from "./components/userProfile/changePassword";
 //import AuthService from "./services/auth.service";
-//import CarouselHeader from "./components/Navbar/navbar";
 
 
 
@@ -83,6 +80,7 @@ class App extends React.Component{
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/profile' component={Profile} />
+        <Route path='/change-password' component={ChangePassword} />
         
       
         

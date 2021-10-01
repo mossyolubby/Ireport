@@ -1,11 +1,8 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom';
-import CustomButton from '../../custom-button/custom-button';
-import './forgot-password.css'
+import React from 'react';
 import axios from 'axios';
 
 
-export default class ForgotPassword extends Component {
+export default class ChangePassword extends Component {
     state = {};
 
     handleSubmit= e => {
@@ -13,10 +10,12 @@ export default class ForgotPassword extends Component {
         e.preventDefault()
 
         const data = {
-            email:this.email
+            password:this.password,
+            newPassword:this.newPassword
         };
-
-        axios.post(' https://i-report-project.herokuapp.com/api/all/forgotPassword', data).then(
+        const header = authHeader();
+        axios.post(' https://i-report-project.herokuapp.com/api/all/user/changePassword', data,
+        {headers:header}).then(
             res => {
                 this.setState({
                     message:res.data.message,
@@ -36,7 +35,7 @@ export default class ForgotPassword extends Component {
         let message ='';
 
           if (this.message) {
-            const cls = 'alert alert' + this.state.cls;
+            const cls = 'alert alert' + this.cls
             message = (
               <div className={cls} role="alert">
                 {this.message}
@@ -51,12 +50,19 @@ export default class ForgotPassword extends Component {
                   {message}
                   <h3>Forgot Password</h3>
                   <div className="form-group">
+                      <label>Password</label>
+                      <input type="email" className="from-control" placeholder="email"
+                      onChange = {e=> this.password= e.target.value} />
+                  </div>
+                  <h3>New Password</h3>
+                  <div className="form-group">
                       <label>Email</label>
                       <input type="email" className="from-control" placeholder="email"
-                      onChange = {e=> this.email= e.target.value} />
+                      onChange = {e=> this.newPassword= e.target.value} />
                   </div>
+                  
 
-                  <CustomButton>Get Password</CustomButton>
+                  <CustomButton>Change Password</CustomButton>
 
                   </form>
                   </div>
@@ -65,4 +71,3 @@ export default class ForgotPassword extends Component {
     )
 }
 }
-

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import AuthService from '../../services/auth.service';
+import {Link} from 'react-router-dom';
+import CustomButton from '../custom-button/custom-button';
 
+//const apiUrl = "https://i-report-project.herokuapp.com/api/"
 export default class Profile extends Component{
     constructor(props) {
         super(props);
@@ -8,33 +11,36 @@ export default class Profile extends Component{
         this.state = {
             currentUser: AuthService.getCurrentUser()
         };
+
     }
 
+   
     render(){
         const {currentUser} = this.state;
         return(
             <div className="col-md-12">
             <div className="card card-container">
-              <img
+             <Link href='/update-profile'> <img
                 src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                 alt="profile-img"
                 className="profile-img-card"
-              />
-                <h3><strong>currentUser.username</strong> Profile</h3>
+              /></Link>
+                <h3><strong>{currentUser.username}</strong> Profile</h3>
             
-            {/* <p>
+            <p>
                <strong>Token:</strong> {''}
-               {currentUser.accessToken.substring(0, 20)}...{" "}
-               {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-            </p> */}
+               {currentUser.access_token.substring(0, 20)}...{" "}
+               {currentUser.access_token.substr(currentUser.access_token.length - 20)}
+            </p>
             <p>
                <strong>Email:</strong> {''}
-               currentUser.email
+                {currentUser.email}
             </p>
             <p>
                <strong>password:</strong> {''}
-               currentUser.password
+               {currentUser.password}
             </p>
+            <CustomButton><Link href='/change-password'><strong>change profile</strong></Link></CustomButton>
         </div>
         </div>
         )

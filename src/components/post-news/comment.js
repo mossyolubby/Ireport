@@ -6,27 +6,28 @@ import axios from 'axios'
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
 let commentCounter = 1;
 
-class Main extends React.Component {
+class CommentPost extends React.Component {
     constructor() {
     super();
     this.state = {
-    commentValue: " ",
+    review: " ",
     commentLine: [{ commentId:"", text: "",}],
       };
     }
  handleCommentValue = (e) =>{
      this.setState({
-         commentValue:e.target.value,
-     });
+         review:e.target.value,
+     })
+    };
 
      setCommentLine = () => {
          this.setState({
              commentLine: [
                  ...this.state.commentLine,
-                 { commentId: commentCounter++, text: this.state.commentVAlue}
+                 { commentId: commentCounter++, text: this.state.commentValue}
              ],
 
-             commentValue: "",
+             review: "",
          });
      }
 
@@ -41,17 +42,18 @@ class Main extends React.Component {
              this.setCommentLine();
          }
      };
- };
+ 
 
 
  render(){
      return(
          <div>
              <CommentBox
-             commentValue ={this.state.commentValue}
+             review ={this.state.review}
              handleCommentValue={this.handleCommentValue}
              enterCommentLine = {this.enterCommentLine}
-             submitCommentLine= {this.submitCommentLine} />
+             submitCommentLine= {this.submitCommentLine} 
+            />
 
          </div>
      )
@@ -113,4 +115,4 @@ class CommentBox extends React.Component{
       
 // }
 
-export default Main;
+export default CommentPost;

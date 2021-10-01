@@ -39,9 +39,9 @@ export default class NavBar extends Component{
       currentUser:null,
     })
     AuthService.logout(
-       this.props.history.push("/"),
-        window.location.reload()
-    );
+      //  this.props.history.push("/"),
+      //   window.location.reload()
+    )
   }
  
  render(){

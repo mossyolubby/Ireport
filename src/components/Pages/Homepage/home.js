@@ -2,7 +2,10 @@ import axios from 'axios'
 import React,{Component} from 'react'
 //import Post from '../../post-news/post';
 import './home.css';
-import { Link } from 'react-router-dom'
+import {Image} from 'cloudinary-react';
+import Comment from '../../post-news/comment';
+import CommentPost from '../../post-news/comment';
+//import { Link } from 'react-router-dom'
 //import Feed from '../../post-news/news-feed';
 
 
@@ -49,9 +52,11 @@ class Home extends Component{
                       <h4 className="news_title">{post.title}</h4>
                       <p className="news-desc">{post.description}</p>
                       {/* <p className="news-desc">{post.areaOfReport}</p> */}
-                      <div className="list-group-item-text">{post.image_path}</div>
+                      <Image className="list-group-item-text"/>{post.image_path}
                       <input type="hidden" id="postId" name="postId" value={post.id}/>
+                      <CommentPost/>
                     </div>
+                    
                 })
                 }
             

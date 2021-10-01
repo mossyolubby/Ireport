@@ -36,7 +36,7 @@ export default class Reset extends Component{
     };
     render(){
         if(this.state.reset){
-            return<Redirect to={'/signin'}/>
+            return<Redirect to={'/login'}/>
         }
 
         let error ='';

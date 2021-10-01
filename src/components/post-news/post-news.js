@@ -4,6 +4,7 @@ import CustomButton from '../custom-button/custom-button';
 import { Link } from 'react-router-dom';
 import authHeader from '../../services/auth-header';
 
+
 //import ImageUploader from 'react-images-upload';
 
 
@@ -26,7 +27,7 @@ class PostNews extends Component{
 
      this.state ={
        title:'',
-       areaOfReport:[],
+       areaofreport:[{"name":"politics", "name":"business","name":"sport","name":"tech"}],
        description:'',
        image: [] 
      };
@@ -55,7 +56,7 @@ componentDidMount(){
   })
   .then(function(response){
 
-  self.setState({areaOfReport:response.data})
+  self.setState({areaofreport:response.data})
 console.log(response.data);
       
   }).catch(function(error){
@@ -75,7 +76,7 @@ console.log(response.data);
         // console.log(payload)  
         const formData = new FormData();
         formData.append("title", this.state.title);
-        formData.append("areaOfReport", "politics");
+        formData.append("areaofreport", this.state.areaofreport);
         formData.append("description", this.state.description);
         formData.append("image", this.state.image);
         console.log(formData);
@@ -103,7 +104,7 @@ console.log(response.data);
   }
   
   handleAreaOfReportChange(e){
-    this.setState({areaOfReport:e.target.value})
+    this.setState({areaofreport:e.target.value})
   }
   
   handleDescriptionChange(e){
@@ -123,7 +124,7 @@ console.log(response.data);
     const header = authHeader();
     axios.post(apiUrl + '/user/post/create', {
       title:this.state.title,
-      areaOfReport:this.state.areaOfReport,
+      areaofreport:this.state.areaofreport,
       description:this.state.description
     }, {headers:header})
     .then(function(response){
@@ -158,11 +159,11 @@ console.log(response.data);
               <label>Area Of Report:
                 <select 
                 onChange={this.handleAreaOfReportChange} 
-                 ref={(input) => this.areaOfReport = input} 
+                 ref={(input) => this.areaofreport = input} 
                 >
-                 {this.state.areaOfReport.map(function (areaOfReports,index){
+                 {this.state.areaofreport.map(function (areaofreports,index){
                  
-                 <option key={index} value={areaOfReports.name}>{areaOfReports.name}</option>
+                 <option key={index} value={areaofreports.name}>{areaofreports.name}</option>
                  })}
                  
                 </select>
