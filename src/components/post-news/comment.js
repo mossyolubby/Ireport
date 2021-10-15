@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import authHeader from '../../services/auth-header';
 
 
 
@@ -9,8 +10,11 @@ let commentCounter = 1;
 class CommentPost extends React.Component {
     constructor() {
     super();
+    
+    //console.log("PROPS ", this.props);
     this.state = {
     review: " ",
+    //postId: this.props.postId,
     commentLine: [{ commentId:"", text: "",}],
       };
     }
@@ -24,15 +28,22 @@ class CommentPost extends React.Component {
          this.setState({
              commentLine: [
                  ...this.state.commentLine,
-                 { commentId: commentCounter++, text: this.state.commentValue}
+                 { commentId: commentCounter++, text: this.state.review}
              ],
 
              review: "",
          });
      }
-
+        
      submitCommentLine = (e) => {
-         axios.get(apiUrl + 'user/comment/add')
+         const header = authHeader();
+         const postId = this.props.postId;
+         console.log(this.state.review,postId,  "REVIEW")
+         axios.post(apiUrl + `user/comment/add/${postId}/?review=` + this.state.review, {
+            //  params:{
+            //      postId:Id
+            //  }
+         },{headers:header})
          e.preventDefault();
          this.setCommentLine();
      };
@@ -62,22 +73,22 @@ class CommentPost extends React.Component {
 
 class CommentBox extends React.Component{
       render(){
-          const {commentValue,handleCommentValue,
+          const {review,handleCommentValue,
           enterCommentLine, submitCommentLine}= this.props;
 
           const enableCommentButton = () => {
-              return (commentValue ? false : true);
+              return (review ? false : true);
           }
 
           const changeCommentButtonStyle = () => {
-              return(commentValue ? "comments-button-enabled" : 
+              return(review ? "comments-button-enabled" : 
               "comments-button-disabled");
           }
 
           return(
               <div className= "comments-box">
                   <input onKeyPress = {enterCommentLine}
-                  value= {commentValue}
+                  value= {review}
                   id ="comments-input" 
                   onChange = {handleCommentValue}
                   type= "text"
@@ -102,17 +113,20 @@ class CommentBox extends React.Component{
 //             const { commentLine } = this.props;
 
 //             return(
+                  
 //                 <ul className="comments-list">
-//                     {commentLine.map((val) => {return
+//                     {commentLine.map(function(val){
+//                         return
 //                     <li className="each-comment"
 //                         key={val.commentId}>{val.text}
-//                     </li>})}
+//                     </li>
+//                 })}
 //                 </ul>
 //             )
 //         }
       
 
       
-// }
+//  }
 
 export default CommentPost;

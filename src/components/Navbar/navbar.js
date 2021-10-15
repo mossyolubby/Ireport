@@ -39,9 +39,11 @@ export default class NavBar extends Component{
       currentUser:null,
     })
     AuthService.logout(
-      //  this.props.history.push("/"),
-      //   window.location.reload()
+        //this.props.history.push("/"),
+         //window.location.reload()
     )
+  
+    
   }
  
  render(){
@@ -50,7 +52,8 @@ export default class NavBar extends Component{
      return(
          <div className='main'>
              <div className="row">
-                 <div className="col-md-12">
+                 {/* <div className="col-md-12"> */}
+                   
                      
                          <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
                              <Navbar.Brand href="/" id="logo"><img src='images/ireportlogo.png' alt='Ireport logo' width='100px'/></Navbar.Brand>
@@ -92,7 +95,7 @@ export default class NavBar extends Component{
                          </Navbar>
                      {/* {buttons} */}
                          
-                 </div>
+                 {/* </div> */}
              </div>
          </div>
      )  

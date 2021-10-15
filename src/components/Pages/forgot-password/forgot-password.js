@@ -16,7 +16,7 @@ export default class ForgotPassword extends Component {
             email:this.email
         };
 
-        axios.post(' https://i-report-project.herokuapp.com/api/all/forgotPassword', data).then(
+        axios.post('https://i-report-project.herokuapp.com/api/all/forgotPassword?email=' + data.email).then(
             res => {
                 this.setState({
                     message:res.data.message,

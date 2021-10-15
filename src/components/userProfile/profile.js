@@ -40,7 +40,7 @@ export default class Profile extends Component{
                <strong>password:</strong> {''}
                {currentUser.password}
             </p>
-            <CustomButton><Link href='/change-password'><strong>change profile</strong></Link></CustomButton>
+            <CustomButton><Link to='/change-password'><strong>change profile</strong></Link></CustomButton>
         </div>
         </div>
         )

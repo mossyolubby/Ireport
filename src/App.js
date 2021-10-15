@@ -27,6 +27,7 @@ import Login from "./components/login/login";
 import AuthService from "./services/auth.service";
 import Profile from "./components/userProfile/profile";
 import ChangePassword from "./components/userProfile/changePassword";
+import CommentPost from "./components/post-news/comment";
 //import AuthService from "./services/auth.service";
 
 
@@ -76,11 +77,12 @@ class App extends React.Component{
         <Route path= '/signup' component={SignUp} />
         <Route path= '/area-of-interest' component={AreaOfInterest} />
         <Route path= '/forgot-password' component={ForgotPassword} />
-        <Route path= '/reset:id' component={Reset} />
+        <Route path= '/reset-password/:id' component={Reset} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/profile' component={Profile} />
         <Route path='/change-password' component={ChangePassword} />
+        <Route path='/comment' component={CommentPost} />
         
       
         

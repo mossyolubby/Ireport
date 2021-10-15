@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import AuthHeader from '../../services/auth-header';
+import CustomButton from '../custom-button/custom-button';
 
 
-export default class ChangePassword extends Component {
+export default class ChangePassword extends React.Component {
     state = {};
 
     handleSubmit= e => {
@@ -13,7 +15,7 @@ export default class ChangePassword extends Component {
             password:this.password,
             newPassword:this.newPassword
         };
-        const header = authHeader();
+        const header = AuthHeader();
         axios.post(' https://i-report-project.herokuapp.com/api/all/user/changePassword', data,
         {headers:header}).then(
             res => {
@@ -48,16 +50,15 @@ export default class ChangePassword extends Component {
               <div className="auth-inner">
               <form onSubmit={this.handleSubmit}>
                   {message}
-                  <h3>Forgot Password</h3>
+                  <h3>Change your Password</h3>
                   <div className="form-group">
                       <label>Password</label>
-                      <input type="email" className="from-control" placeholder="email"
+                      <input type="email" className="from-control" placeholder="password"
                       onChange = {e=> this.password= e.target.value} />
                   </div>
-                  <h3>New Password</h3>
                   <div className="form-group">
-                      <label>Email</label>
-                      <input type="email" className="from-control" placeholder="email"
+                      <label>New Password</label>
+                      <input type="email" className="from-control" placeholder="new password"
                       onChange = {e=> this.newPassword= e.target.value} />
                   </div>
                   

@@ -2,7 +2,7 @@
     display:grid;
     grid-template-columns:repeat(3,ltr);
     grid-gap: 20px;
-    margin:50px auto;
+    margin:10px auto;
     background-color:rgb(3, 5, 31);
     display:flex;
     flex-direction: row;
@@ -47,6 +47,16 @@
 }
 .share{
     padding:5px;
+}
+
+.image-group{
+    max-width:200px;
+    max-height:200px;
+}
+
+#breaking{
+    display:flex;
+    margin-left:auto;
 }
 
 

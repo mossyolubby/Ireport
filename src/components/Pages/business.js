@@ -17,7 +17,7 @@ class Business extends React.Component{
         debugger;
         const self= this;
 //var id= 1;
-        axios.get(apiUrl + "all/posts/{1}", {
+        axios.get(apiUrl + "all/posts/2", {
          
         })
         .then(function(response){
@@ -37,13 +37,17 @@ class Business extends React.Component{
     
     return (
         <container>
+            <h1 className='business-news' >Business News</h1>
         <div className='allNews'>
+        
             <div className='news'>
                 {this.state.posts.map(function(post,{id}) {
                 return <div>
+                      
                       <h4 className="list-group-item-heading">{post.title}</h4>
                       <p className="list-group-item-text">{post.description}</p>
-                      <input type="hidden" id="postId" name="postId" value={post.id}/>
+                      <img className="image-group" src={post.imagePath} />
+                      {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
                     </div>
                 })
                 }

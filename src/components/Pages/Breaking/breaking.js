@@ -1,9 +1,12 @@
 import React from 'react'
 import axios from 'axios'
+import Likes from '../../post-news/like';
+import CommentPost from '../../post-news/comment';
+import ShowComment from '../../CommentPost/comment-on-post';
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
 
-class Health extends React.Component{
+class Breaking extends React.Component{
 
     constructor(props){
         super(props);
@@ -16,8 +19,8 @@ class Health extends React.Component{
     componentDidMount(){
         debugger;
         const self= this;
-//var id= 1; MA so remove the ? cat on others. Leaving control
-        axios.get(apiUrl + "all/posts/5", {
+//var id= 1;
+        axios.get(apiUrl + "all/posts/8", {
          
         })
         .then(function(response){
@@ -37,7 +40,7 @@ class Health extends React.Component{
     
     return (
         <container>
-            <h1 className='health-news'>Health News</h1>
+            <h1 className='business-news' >Breaking News</h1>
         <div className='allNews'>
         
             <div className='news'>
@@ -45,8 +48,14 @@ class Health extends React.Component{
                 return <div>
                       
                       <h4 className="list-group-item-heading">{post.title}</h4>
-                      <p className="list-group-item-text">{post.description}</p>
                       <img className="image-group" src={post.imagePath} />
+                      <p className="list-group-item-text">{post.description}</p>
+                      <div className='likes'>
+                          <Likes />
+                          <CommentPost postId={post.id} />
+                          <ShowComment postId={post.id} />
+                      </div>
+                      
                       {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
                     </div>
                 })
@@ -57,4 +66,5 @@ class Health extends React.Component{
     )
 }
 }
-export default Health;
+
+export default Breaking;

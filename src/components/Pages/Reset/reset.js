@@ -2,7 +2,7 @@ import React, {Component} from'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import CustomButton from '../../custom-button/custom-button';
-
+//import authHeader from '../../../services/auth-header';
 
 
 
@@ -18,8 +18,18 @@ export default class Reset extends Component{
             password:this.password
 
         }
-
-        axios.post(' https://i-report-project.herokuapp.com/api/all/resetPassword', data).then(
+        //const header = authHeader();
+        console.log(this.props, this.props.match.params.id, 'this is a prop')
+        axios.put(' https://i-report-project.herokuapp.com/api/all/resetPassword', null, {
+            params:  {
+                token: this.props.match.params.id,
+                password:this.password
+    
+            }
+        }
+        //{headers:header}
+        )
+        .then(
             res =>{
                 console.log(res);
                 this.setState({

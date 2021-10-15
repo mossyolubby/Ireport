@@ -27,7 +27,9 @@ class PostNews extends Component{
 
      this.state ={
        title:'',
-       areaofreport:[{"name":"politics", "name":"business","name":"sport","name":"tech"}],
+       selectedareaofreport: '',
+       //areaofreport:[{"name":"politics", "name":"business","name":"sport","name":"tech"}],
+       areaofreport:[],
        description:'',
        image: [] 
      };
@@ -48,7 +50,7 @@ class PostNews extends Component{
 // }  
 
 componentDidMount(){
-  debugger;
+  //debugger;
   const self= this;
 
   axios.get(apiUrl + 'all/categories', {
@@ -56,8 +58,8 @@ componentDidMount(){
   })
   .then(function(response){
 
-  self.setState({areaofreport:response.data})
-console.log(response.data);
+  self.setState({areaofreport:response.data, selectedareaofreport: response.data[0].name})
+console.log(response.data, self.state.areaofreport);
       
   }).catch(function(error){
       console.log('error is', error);
@@ -74,13 +76,17 @@ console.log(response.data);
         //   image:this.state.image
         // };
         // console.log(payload)  
+        console.log("htitle", this.state.title);
+        console.log("jareaOfReport", this.state.selectedareaofreport);
+        console.log("description", this.state.description);
+        
         const formData = new FormData();
         formData.append("title", this.state.title);
-        formData.append("areaofreport", this.state.areaofreport);
+        formData.append("areaOfReport", this.state.selectedareaofreport);
         formData.append("description", this.state.description);
         formData.append("image", this.state.image);
-        console.log(formData);
-        formData.forEach(d => console.log(d))
+        //console.log(formData);
+        //formData.forEach(d => console.log(d))
         //debugger;
         const header = authHeader();
         console.log(header);
@@ -104,7 +110,8 @@ console.log(response.data);
   }
   
   handleAreaOfReportChange(e){
-    this.setState({areaofreport:e.target.value})
+    alert('yay', e.target.value)
+    this.setState({selectedareaofreport:e.target.value})
   }
   
   handleDescriptionChange(e){
@@ -161,10 +168,10 @@ console.log(response.data);
                 onChange={this.handleAreaOfReportChange} 
                  ref={(input) => this.areaofreport = input} 
                 >
-                 {this.state.areaofreport.map(function (areaofreports,index){
-                 
-                 <option key={index} value={areaofreports.name}>{areaofreports.name}</option>
-                 })}
+                 {
+                this.state.areaofreport && this.state.areaofreport.map((cat,index) => {
+                  return <option key={index} value={cat.name}>{cat.name}</option>;
+                })}
                  
                 </select>
                 </label>
