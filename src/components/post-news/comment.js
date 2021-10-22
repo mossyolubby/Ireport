@@ -98,7 +98,7 @@ class CommentBox extends React.Component{
                   type="submit"
                   className="comments-button"
                   id={changeCommentButtonStyle()}
-                  disabled= {enableCommentButton()}>Post</button>
+                  disabled= {enableCommentButton()}>Post comment</button>
               </div>
           )
 

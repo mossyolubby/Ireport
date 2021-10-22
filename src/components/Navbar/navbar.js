@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';  
+//import { useHistory } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar,Nav,Button } from 'react-bootstrap'
 import AuthService from '../../services/auth.service';
@@ -15,7 +16,7 @@ export default class NavBar extends Component{
     this.state = {
       currentUser:undefined
     }  
-    
+   
     
   }
 
@@ -33,7 +34,7 @@ export default class NavBar extends Component{
       })
      }
    }
-
+ 
   logOut(){
     this.setState({
       currentUser:null,
@@ -43,6 +44,7 @@ export default class NavBar extends Component{
          //window.location.reload()
     )
   
+ 
     
   }
  

@@ -37,9 +37,9 @@ class Politics extends React.Component{
     
     return (
         <container>
-            <h1 className='politics-news'>Political News</h1>
+            
         <div className='allNews'>
-        
+        <h1 className='politics-news'>Political News</h1>
             <div className='news'>
                 {this.state.posts.map(function(post,{id}) {
                 return <div>

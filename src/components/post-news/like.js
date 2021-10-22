@@ -7,7 +7,8 @@ class Likes extends React.Component{
     }
 
     incrementMe = () => {
-        let newCount = this.state.count + 1
+      debugger
+        let newCount = this.state.count + 1;
         this.setState({
             count:newCount
         })
@@ -16,7 +17,7 @@ class Likes extends React.Component{
     render(){
         return (
             <div>
-            <button onclick= {this.incrementMe}>Likes: {this.state.count}</button>
+            <button onClick= {this.incrementMe}>Likes: {this.state.count}</button>
             </div>
         )
 

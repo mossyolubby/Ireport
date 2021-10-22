@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import Rimporteact, { useContext} from 'react'
 import {NewsContext} from "../NewsContent"
 import NewsArticle from "./newsArticle"
 

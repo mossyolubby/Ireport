@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {Component} from 'react';
 import CustomButton from '../../custom-button/custom-button'
 import { Link, Redirect} from 'react-router-dom';
+import authHeader from '../../../services/auth-header'
 
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
@@ -9,70 +10,96 @@ const apiUrl = "https://i-report-project.herokuapp.com/api/"
 
 
 
-class PostThought extends Component{
-  constructor(props){
-    super(props);
-  
+  class ThoughtAndOpinion extends Component{
+    constructor(props){
+      super(props);
     
-    this.handleSubjectChange= this.handleSubjectChange.bind(this)
-     this.state ={
-       subject:''
-     };
-  
-  }
-  
-  
-  handleSubjectChange(e){
-    this.setState({title:e.target.value})
-  }
-  
-  postNews(){
-    axios.post(apiUrl + '/user/post/create', {
+      this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this)
       
-      subject:this.state.subject
-    })
-    .then(function(response){
-      console.log('response from add post is ', response)
-      History.push('/')
-    })
-    .catch(function(error){
-      console.log(error);
-    })
-  }
+      
   
-  
-  
-    render(){
-      return(
-        <div className='col-md-12'>
-          <div className='card card-container'>
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+       this.state ={
+         description:'',
+         
+       };
     
-        
-            {/* <form role='form'> */}
-              
-              <div className="form-group">
-                <label> Your Thought:
-              <textarea className="form-control" onChange={this.handleSubjectChange} type="textarea" id="subject" placeholder="Subject" maxlength="140" rows="7"></textarea>
-              </label>
-              </div>
-
-              <div className="form-group">
-                                    <CustomButton >Post</CustomButton>
-                                </div>
-            <Link href="/">Cancel</Link>
-  
-              {/* <button type="button" id="submit" name="submit" className="btn"><Link href='/'>Cancel</Link></button> */}
-  
-            {/* </form> */}
-        </div>
-        </div>
-      )
     }
-  }
 
-  export default PostThought;
+        handleSubmit(event) { 
+          console.log("description", this.state.description)
+          
+          // const formData = new FormData();
+          // formData.append("description", this.state.description);
+          
+          //debugger;
+          const header = authHeader();
+          console.log(header);
+      axios.post(apiUrl + 'user/thoughts/create', 
+      // formData,
+         {headers:header},
+         {
+           params:{
+             description:this.props.match.params
+           }
+         })
+      .then(function(response){
+        console.log('response from add post is ', response)
+         History.push('/')
+        this.props.history.push("/");
+            window.location.reload();
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+        event.preventDefault();
+      }
+    
+    handleDescriptionChange(e){
+      this.setState({Description:e.target.value})
+    }
+    
+    
+    
+    
+      render(){
+        return(
+          <div className='col-md-12'>
+           <div className='card card-container'>
+           <img
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+             alt="profile-img"
+            className="profile-img-card"
+           /> 
+            <br styles= "clear:both" />
+              <form onSubmit={this.handleSubmit}>
+
+                <div className="form-group">
+                  <label>Your Thought:
+                <textarea className="form-control" 
+                onChange={this.handleDescriptionChange} 
+                type="textarea" 
+                id="subject" 
+                placeholder="Subject" 
+                maxlength="140"
+                 rows="7">
+                </textarea>
+                </label>
+                </div>
+
+  
+                <div className="form-group">
+                <CustomButton >Post Thought</CustomButton>
+                </div>
+    
+                <button type="button" id="submit" name="submit" 
+                className="btn"><Link href='/'>Cancel</Link></button>
+    
+              </form>
+          </div>
+          </div>
+        )
+      }
+    }
+  
+    export default ThoughtAndOpinion;
