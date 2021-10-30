@@ -63,13 +63,13 @@ class ShowComment extends Component{
     return (
        
         <div className=" ">
-            <div className="card-body">
+            <div className="card-body" style={{padding:'0',}}>
                 {this.state.posts.map(function(post,index) {
                 return <div key={index}>
                     
-                      <p className="showcomment">{post.comment} </p>
-                      
-                      <hr />
+                      <p className="showcomment" style={{padding: '1px', fontSize: '14px', margin:'0'}} >{post.comment}-</p>
+                     
+                      {/* <hr style={{margin:'0'}}/> */}
                     </div>
                     
                     

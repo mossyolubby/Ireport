@@ -37,7 +37,7 @@ class Health extends React.Component{
     
     return (
         <container>
-            <h1 className='health-news'>Health News</h1>
+            <h4 className='health-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Health News</h4>
         <div className='allNews'>
         
             <div className='news'>

@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React,{Component} from 'react';
-import './home.css';
-import CommentPost from '../../post-news/comment';
+//import CommentPost from '../../post-news/comment';
+import './thought-and-opinion.css'
+import LikeThought from './thought-like';
+import UnLikeThought from './thought-unlike';
+//import AuthService from '../../../services/auth.service'
 
 
 
@@ -12,6 +15,8 @@ class ShowThought extends Component{
     constructor(props){
         super(props);
         this.state = {
+            // currentUser:AuthService.getCurrentUser(),
+            // //user:this.state.props,
             posts:[]
         };
     }
@@ -20,10 +25,8 @@ class ShowThought extends Component{
     componentDidMount(){
        // debugger;
         const self= this;
-
-        axios.get(apiUrl + "all/posts", {
-         
-        })
+        
+        axios.get(apiUrl + "all/thoughts")
         .then(function(response){
 
         self.setState({posts:response.data})
@@ -41,25 +44,38 @@ class ShowThought extends Component{
     render() {
     
 
+
         this.state.posts.sort(function (a, b) {
             return b.id - a.id;
           });
+
+        //   const {currentUser} = this.state;
+          //const user =this.state
     return (
         // <Container>
-        <div className='news'>
+        <div className='news-thought'>
             <div className='opinion'>
+            <h4>Thought and opinion</h4>
             <div>
-                   <h4>Thought and opinion</h4> 
-                    mossyolubby <img
+                    
+                     {/* {currentUser.username} */}
+                     {/* {user.username} */}
+                     
+            </div>
+                {this.state.posts.map(function(post,index) {
+                return <div key={index}>
+                    <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
             className="profile-img-card" id="profilecard"
-          /></div>
-                {this.state.posts.map(function(post,index) {
-                return <div key={index}>
+            
+            /> 
+                    <h6 className="thought">{post.user.username}</h6>
                       <p className="thought">{post.description}</p>
-                      <div>
-                          {/* <Likes /> */}
+                      <div className='likethought'>
+                      <div classname='Likes' style={{padding:'5px', margin:'0', display:'flex',}}><LikeThought thoughtId={post.id}/>{post.numberOfLikes}</div>
+                          <div className='Unlike' style={{padding:'5px'}}><UnLikeThought thoughtId={post.id} />{post.numberOfDislikes}</div>
+                      
                       </div>
                       <hr />
                       

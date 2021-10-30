@@ -37,7 +37,7 @@ class Food extends React.Component{
     
     return (
         <container>
-            <h1 className='Food-news'>Food News</h1>
+            <h4 className='Food-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Food News</h4>
         <div className='allNews'>
         
             <div className='news'>

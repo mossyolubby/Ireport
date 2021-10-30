@@ -95,6 +95,7 @@ console.log(response.data, self.state.areaofreport);
        {headers:header})
     .then(function(response){
       console.log('response from add post is ', response)
+      alert('Post is successful')
       // History.push('/')
       this.props.history.push("/");
           window.location.reload();
@@ -110,7 +111,7 @@ console.log(response.data, self.state.areaofreport);
   }
   
   handleAreaOfReportChange(e){
-    alert('yay', e.target.value)
+    //alert('yay', e.target.value)
     this.setState({selectedareaofreport:e.target.value})
   }
   

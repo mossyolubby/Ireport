@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaThumbsDown, FaThumbsUp} from 'react-icons/fa';
+import {FaThumbsDown} from 'react-icons/fa';
 import axios from 'axios';
 import authHeader from '../../services/auth-header'
 
@@ -8,11 +8,11 @@ import authHeader from '../../services/auth-header'
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
 
-class Likes extends React.Component{
+class UnLike extends React.Component{
     constructor(props) {
         super(props);
         
-        this.addlike = this.addlike.bind(this)
+        this.addUnlike = this.addUnlike.bind(this)
         
 
 
@@ -21,10 +21,10 @@ class Likes extends React.Component{
         };
       }
     
-    addlike = (e) => {
+    addUnlike = (e) => {
       const postId = this.props.postId;
       const header = authHeader();
-      axios.post(apiUrl + `user/post/${postId}/like`, null,
+      axios.post(apiUrl + `user/post/${postId}/dislike`, null,
       {headers:header}).then(res=> console.log(res));
     
       e.preventDefault();
@@ -33,8 +33,8 @@ class Likes extends React.Component{
         return (
             <div>
            
-             <FaThumbsUp
-             onClick={this.addlike}/>
+             <FaThumbsDown
+             onClick={this.addUnlike}/>
            
             </div>
         )
@@ -43,4 +43,4 @@ class Likes extends React.Component{
 }
 
 
-export default Likes;
+export default UnLike

@@ -5,6 +5,7 @@ import { Link, Redirect} from 'react-router-dom';
 import authHeader from '../../../services/auth-header'
 
 
+
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
 
 
@@ -29,22 +30,25 @@ const apiUrl = "https://i-report-project.herokuapp.com/api/"
         handleSubmit(event) { 
           console.log("description", this.state.description)
           
-          // const formData = new FormData();
-          // formData.append("description", this.state.description);
-          
+          const formData = new FormData();
+          formData.append("description", this.state.description);
+          // const description = this.state.description
           //debugger;
           const header = authHeader();
           console.log(header);
-      axios.post(apiUrl + 'user/thoughts/create', 
-      // formData,
-         {headers:header},
-         {
-           params:{
-             description:this.props.match.params
-           }
-         })
+      axios.post(apiUrl + 'user/thoughts/create' , 
+      // null, {
+      //   params:{
+      //     description:'i have good news'
+      //   }
+      // }, 
+        formData,
+          {headers:header},
+        
+         )
       .then(function(response){
         console.log('response from add post is ', response)
+        alert('Added successfully')
          History.push('/')
         this.props.history.push("/");
             window.location.reload();
@@ -56,8 +60,10 @@ const apiUrl = "https://i-report-project.herokuapp.com/api/"
       }
     
     handleDescriptionChange(e){
-      this.setState({Description:e.target.value})
+      this.setState({description:e.target.value})
     }
+    
+
     
     
     
@@ -80,8 +86,8 @@ const apiUrl = "https://i-report-project.herokuapp.com/api/"
                 onChange={this.handleDescriptionChange} 
                 type="textarea" 
                 id="subject" 
-                placeholder="Subject" 
-                maxlength="140"
+                placeholder="Subject"
+                maxLength="140"
                  rows="7">
                 </textarea>
                 </label>

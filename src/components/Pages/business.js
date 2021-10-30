@@ -37,7 +37,7 @@ class Business extends React.Component{
     
     return (
         <container>
-            <h1 className='business-news' >Business News</h1>
+            <h4 className='center' style= {{display:'flex',justifyContent:'center', margin:'auto', }} >Business News</h4>
         <div className='allNews'>
         
             <div className='news'>

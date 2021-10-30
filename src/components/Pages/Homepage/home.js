@@ -9,8 +9,10 @@ import CommentPost from '../../post-news/comment';
 import ShowComment from '../../CommentPost/comment-on-post';
 import Likes from '../../post-news/like';
 import Breaking from '../Breaking/breaking';
+import UnLike from '../../post-news/Unlike';
 //import CommentGroup from '../../CommentPost/comment-group';
 //import Feed from '../../post-news/news-feed';
+import ShowThought from '../Thought-and-opinion/Show-thought'
 
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
@@ -36,7 +38,7 @@ class Home extends Component{
 
         self.setState({posts:response.data})
 
-        console.log(response)
+        console.log(response.data)
             
         }).catch(function(error){
             console.log('error is', error);
@@ -58,19 +60,21 @@ class Home extends Component{
             <div className='news'>
                 {this.state.posts.map(function(post,index) {
                 return <div key={index}>
-                      <h4 className="news_title">{post.title}</h4>
+                      <h5 className="news_title">{post.title}</h5>
                       <p className="news-desc">{post.description}</p>
                       {/* <p className="news-desc">{post.areaOfReport}</p> */}
                       <img className="image-group" src={post.imagePath} />
-                      <div>
-                          <Likes />
-                      {/* <Link to = '/comment'><span>Comment</span></Link> */}
+
+                      <div className='likes'>
+                          <span classname='Likes' style={{display:'flex'}}><Likes postId={post.id}/>{post.numberOfLikes}</span>
+                          <span className='Unlike'><UnLike postId={post.id} />{post.numberOfDislikes}</span>
+                          <span style={{paddingLeft: '10px', fontSize: '14px', margin:'0px'}}>Comments{post.numberOfComments}</span>
                       </div>
-                      {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
+                      
                       <CommentPost postId={post.id} />
-                      <ShowComment postId={post.id} />
-                      {/* <CommentGroup/> */}
-                      {/* <hr /> */}
+                      <ShowComment postId={post.id} /><span style={{fontSize:'14px'}}>{post.user.username}</span>
+                      
+                      <hr style={{margin:'0'}}/>
                       
                     </div>
                     
@@ -79,12 +83,24 @@ class Home extends Component{
                 }
 
             </div>
+           
+           <ShowThought 
+           className="showthought"/> 
+        </div>
+        // </Container>
+    )
+}
+}
 
-        {/* <div className="news" id="breaking">
-                           <div className='breaking-news'>
-                               <Breaking />
-                           </div>
-         </div> */}
+export default Home;
+
+
+
+// {/* <div className="news" id="breaking">
+//                            <div className='breaking-news'>
+//                                <Breaking />
+//                            </div>
+//          </div> */}
 
 
         {/* <div className="news" id="thought">
@@ -108,10 +124,3 @@ class Home extends Component{
                 
               </div>  
               </div>                     */}
-        </div>
-        // </Container>
-    )
-}
-}
-
-export default Home;

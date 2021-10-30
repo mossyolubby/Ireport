@@ -37,7 +37,7 @@ class Sport extends React.Component{
     
     return (
         <container>
-            <h1 className='sport-news'>sport News</h1>
+            <h4 className='sport-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Sport News</h4>
         <div className='allNews'>
         
             <div className='news'>

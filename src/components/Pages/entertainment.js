@@ -37,7 +37,7 @@ class Entertainment extends React.Component{
     
     return (
         <container>
-            <h1 className='entertainment-news'>Entertainment News</h1>
+            <h4 className='entertainment-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Entertainment News</h4>
         <div className='allNews'>
         
             <div className='news'>

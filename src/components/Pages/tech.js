@@ -37,7 +37,7 @@ class Tech extends React.Component{
     
     return (
         <container>
-            <h1 className='tech-news'>Tech News</h1>
+            <h4 className='tech-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Tech News</h4>
         <div className='allNews'>
         
             <div className='news'>
