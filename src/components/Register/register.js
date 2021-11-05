@@ -1,13 +1,16 @@
 import React,{ Component } from 'react';
-//import Form from 'validator';
-//import Input from "validator";
+import { Redirect } from "react-router-dom";
+//import {Form, Input, CheckButton} from 'react-form-validation';
+//import {Form} from "react-form-validation";
 //import CheckButton  from "validator";
 import { Link } from 'react-router-dom';
 import  { isEmail } from "validator";
-import './register.css'
-
+import './register.css';
+import './successful-register'
 import AuthService from "../../services/auth.service";
 import CustomButton from '../custom-button/custom-button';
+
+
 
 const required  = value =>{
     if (!value) {
@@ -88,26 +91,33 @@ export default class Register extends Component {
         e.preventDefault();
 
         this.setState({
-            message: "",
+            message: "You have successfully registered. Check your mail to verify ",
             successful: false
         });
 
         //this.form.validation();
-
+        //if (this.checkBtn.context._errors.length === 0) {
             AuthService.register(
                 this.state.username,
                 this.state.email,
                 this.state.password
-            ).then(
-                response => {
-                    this.setState({
-                        message:response.data.message,
-                        successful:true
+
+            ).then(() => {
+                this.props.history.push("/successful-register");
+                window.location.reload();
+                alert('successfully registered')
+              },
+                
+                // response => {
+                //     this.setState({
+                //         message:response.data.message,
+                //         successful:true,
+                        //redirect: "/successful-register"
                         
-                    });
-                    this.props.history.push("/login");
-                    window.location.reload();
-                },
+                    // });
+                    // this.props.history.push("/login");
+                    // window.location.reload();
+                // },
                 error => {
                     const resMessage = 
                     (error.response &&
@@ -122,12 +132,17 @@ export default class Register extends Component {
                         });
                 }
          
-                );
-        
+                )
+            // }
             
     }
 
     render() {
+        // if(this.state.register){
+        //     return<Redirect to={'/successful-register'}/>
+        // }
+
+
         return(
             <div className="col-md-12">
                 <div className="card card-container">

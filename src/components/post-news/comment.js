@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import authHeader from '../../services/auth-header';
+import AuthService from '../../services/auth.service';
 
 
 
@@ -16,6 +17,7 @@ class CommentPost extends React.Component {
     review: " ",
     //postId: this.props.postId,
     commentLine: [{ commentId:"", text: "",}],
+   
       };
     }
  handleCommentValue = (e) =>{
@@ -72,7 +74,16 @@ class CommentPost extends React.Component {
 } 
 
 class CommentBox extends React.Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentUser: AuthService.getCurrentUser()
+        };
+
+    }
       render(){
+        const {currentUser} = this.state;
           const {review,handleCommentValue,
           enterCommentLine, submitCommentLine}= this.props;
 
@@ -86,20 +97,21 @@ class CommentBox extends React.Component{
           }
 
           return(
-              <div className= "comments-box">
-                  <input onKeyPress = {enterCommentLine}
+             <div className= "comments-box">
+                 {currentUser && <input onKeyPress = {enterCommentLine}
                   value= {review}
                   id ="comments-input" 
                   onChange = {handleCommentValue}
                   type= "text"
-                  placeholder="Add a comment" />
+                  placeholder="Add a comment" /> }
 
-                  <button onClick={submitCommentLine}
+                  {currentUser && <button onClick={submitCommentLine}
                   type="submit"
                   className="comments-button"
                   id={changeCommentButtonStyle()}
-                  disabled= {enableCommentButton()}>Post comment</button>
+                  disabled= {enableCommentButton()}>Post comment</button> }
               </div>
+          
           )
 
 

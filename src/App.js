@@ -29,6 +29,7 @@ import Profile from "./components/userProfile/profile";
 import ChangePassword from "./components/userProfile/changePassword";
 import CommentPost from "./components/post-news/comment";
 import Verify from "./components/Verification/verify";
+import SuccessfulRegister from "./components/Register/successful-register";
 //import AuthService from "./services/auth.service";
 
 
@@ -85,6 +86,7 @@ class App extends React.Component{
         <Route path='/change-password' component={ChangePassword} />
         <Route path='/comment' component={CommentPost} />
         <Route path= '/verify' component ={Verify} />
+        <Route path= '/successful-register' component ={SuccessfulRegister} />
       
         
         

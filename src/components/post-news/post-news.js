@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import CustomButton from '../custom-button/custom-button';
 import { Link } from 'react-router-dom';
 import authHeader from '../../services/auth-header';
+import { Redirect } from 'react-router-dom'
 
 
 //import ImageUploader from 'react-images-upload';
@@ -93,12 +94,17 @@ console.log(response.data, self.state.areaofreport);
     axios.post(apiUrl + 'user/post/create', 
     formData,
        {headers:header})
-    .then(function(response){
-      console.log('response from add post is ', response)
-      alert('Post is successful')
-      // History.push('/')
+    .then((response) => {
       this.props.history.push("/");
-          window.location.reload();
+      window.location.reload();
+    
+      //function(response){
+      console.log('response from add post is ', response)
+      alert('Post is successful');
+      // History.push('/')
+      
+      // this.props.history.push("/");
+      //     window.location.reload();
     })
     .catch(function(error){
       console.log(error);

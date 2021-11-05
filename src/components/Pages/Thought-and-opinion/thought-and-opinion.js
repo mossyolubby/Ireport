@@ -46,12 +46,17 @@ const apiUrl = "https://i-report-project.herokuapp.com/api/"
           {headers:header},
         
          )
-      .then(function(response){
+      .then(
+        (response) => {
+          this.props.history.push("/");
+          window.location.reload();
+        
+        //function(response){
         console.log('response from add post is ', response)
         alert('Added successfully')
-         History.push('/')
-        this.props.history.push("/");
-            window.location.reload();
+        //  History.push('/')
+        // this.props.history.push("/");
+        //     window.location.reload();
       })
       .catch(function(error){
         console.log(error);
