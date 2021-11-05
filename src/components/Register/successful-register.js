@@ -4,7 +4,8 @@ function SuccessfulRegister() {
     return (
         <div className= 'card mt-4 mb-3'>
 
-         <h4>You have successfully registered. Check you email inbox or spam to verify</h4>
+         <h5>You have successfully registered</h5> 
+         <h6>Check you email inbox or spam to verify</h6>
    
         </div>
     )
