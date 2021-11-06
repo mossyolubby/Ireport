@@ -24,7 +24,7 @@ class UnLikeThought extends React.Component{
     addUnLikeThought = (e) => {
       const thoughtId = this.props.thoughtId;
       const header = authHeader();
-      axios.post(apiUrl + `user/post/${thoughtId}/dislike`, null,
+      axios.post(apiUrl + `user/thought/${thoughtId}/dislike`, null,
       {headers:header}).then(res=> console.log(res));
     
       e.preventDefault();

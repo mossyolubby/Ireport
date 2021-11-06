@@ -73,8 +73,11 @@ class ShowThought extends Component{
                     <h6 className="thought">{post.user.username}</h6>
                       <p className="thought">{post.description}</p>
                       <div className='likethought'>
-                      <div classname='Likes' style={{padding:'5px', margin:'0', display:'flex',}}><LikeThought thoughtId={post.id}/>{post.numberOfLikes}</div>
-                          <div className='Unlike' style={{padding:'5px'}}><UnLikeThought thoughtId={post.id} />{post.numberOfDislikes}</div>
+                      <div classname='Likes' style={{padding:'5px', margin:'0', display:'flex',}}>
+                          <LikeThought thoughtId={post.id}/>{post.numberOfLikes}</div>
+                          
+                          <div className='Unlike' style={{padding:'5px'}}>
+                              <UnLikeThought thoughtId={post.id} />{post.numberOfDislikes}</div>
                       
                       </div>
                       <hr />

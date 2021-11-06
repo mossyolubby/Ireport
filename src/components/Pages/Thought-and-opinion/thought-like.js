@@ -24,7 +24,7 @@ class LikeThought extends React.Component{
     addLikeThought = (e) => {
       const thoughtId = this.props.thoughtId;
       const header = authHeader();
-      axios.post(apiUrl + `user/post/${thoughtId}/like`, null,
+      axios.post(apiUrl + `user/thought/${thoughtId}/like`, null,
       {headers:header}).then(res=> console.log(res));
     
       e.preventDefault();
