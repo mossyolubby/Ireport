@@ -34,7 +34,9 @@ class Likes extends React.Component{
             <div>
            
              <FaThumbsUp
-             onClick={this.addlike}/>
+             onClick={this.addlike}
+             onMouseOver="this.style.backgroundColor='#F8F8F8'" 
+             onMouseOut="this.style.backgroundColor='#FFFFFF'"/>
            
             </div>
         )

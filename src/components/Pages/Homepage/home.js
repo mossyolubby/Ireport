@@ -66,7 +66,7 @@ class Home extends Component{
                       <img className="image-group" src={post.imagePath} />
 
                       <div className='likes'>
-                          <span classname='Likes' style={{display:'flex'}}><Likes postId={post.id}/>{post.numberOfLikes}</span>
+                          <span className='Likes' style={{display:'flex'}}><Likes postId={post.id}/>{post.numberOfLikes}</span>
                           <span className='Unlike'><UnLike postId={post.id} />{post.numberOfDislikes}</span>
                           <span style={{paddingLeft: '10px', fontSize: '14px', margin:'0px'}}>Comments{post.numberOfComments}</span>
                       </div>

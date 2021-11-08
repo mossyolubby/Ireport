@@ -34,7 +34,8 @@ class UnLikeThought extends React.Component{
             <div>
            
              <button style={{margin:'0', fontSize:'14px',border:'none', BackgroundColor:'white',}}
-             onClick={this.addUnLikeThought}>Unlike</button>
+             onClick={this.addUnLikeThought}>
+             Unlike</button>
            
             </div>
         )
