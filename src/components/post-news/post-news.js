@@ -80,7 +80,7 @@ console.log(response.data, self.state.areaofreport);
         console.log("htitle", this.state.title);
         console.log("jareaOfReport", this.state.selectedareaofreport);
         console.log("description", this.state.description);
-        
+        console.log("image" , this.state.image);
         const formData = new FormData();
         formData.append("title", this.state.title);
         formData.append("areaOfReport", this.state.selectedareaofreport);
