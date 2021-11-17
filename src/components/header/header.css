@@ -59,11 +59,17 @@ color: #000000;
 color: #000000
 }
 .click{
-    color:red
+    color:red;
+    padding-right:5px;
+    padding-left:5px;
 }
 .click:hover{
     color:palevioletred;
 
+}
+.nclick{
+    padding-right:5px;
+    padding-left:5px;
 }
 
 

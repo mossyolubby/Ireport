@@ -21,9 +21,9 @@ class Header extends React.Component{
     return (
 <div>
 <div className="jumbotron">
-<div className='header-text'>Something on your mind 
-{currentUser?(<Link to='/thought-and-opinion' className='click'> click</Link>):(
-    <Link to='/login' className=''> click</Link>
+<div className='header-text'>Something on your mind
+{currentUser?(<Link to='/thought-and-opinion' className='click'> click </Link>):(
+    <Link to='/login' className='nclick'> click </Link>
 )}
   to share
 </div>  

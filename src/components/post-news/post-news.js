@@ -85,7 +85,11 @@ console.log(response.data, self.state.areaofreport);
         formData.append("title", this.state.title);
         formData.append("areaOfReport", this.state.selectedareaofreport);
         formData.append("description", this.state.description);
-        formData.append("image", this.state.image);
+        
+        if(this.state.image && this.state.image.length > 0){
+          console.log('adding');
+          formData.append("image", this.state.image);
+        }
         //console.log(formData);
         //formData.forEach(d => console.log(d))
         //debugger;
@@ -219,3 +223,4 @@ console.log(response.data, self.state.areaofreport);
   }
 
   export default PostNews;
+

@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 //import {Form, Input, CheckButton} from 'react-form-validation';
 //import {Form} from "react-form-validation";
 //import CheckButton  from "validator";
