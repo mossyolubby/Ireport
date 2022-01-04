@@ -56,37 +56,50 @@ class ShowThought extends Component{
         <div className='news-thought'>
             <div className='opinion'>
             <h4>Thought and opinion</h4>
-            <div>
+            {/* <div>
                     
-                     {/* {currentUser.username} */}
-                     {/* {user.username} */}
+                     {currentUser.username} 
+                     {user.username}
                      
-            </div>
+            </div> */}
+            <div>
                 {this.state.posts.map(function(post,index) {
-                return <div key={index}>
+                return <div className='slotnews' key={index}>
+                   
+                    <p className="thought">{post.user.username} </p>
+                    <div className= 'newsopinion'>
                     <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card" id="profilecard"
+                     src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                     alt="profile-img"
+                     className="profile-img-card" id="profilecard"
             
-            /> 
-                    <h6 className="thought">{post.user.username}</h6>
-                      <p className="thought">{post.description}</p>
+                    />
+                      <span className="">{post.description}</span> 
+                   
+                    </div>  
                       <div className='likethought'>
-                      <div classname='Likes' style={{padding:'5px', margin:'0', display:'flex',}}>
-                          <LikeThought thoughtId={post.id}/>{post.numberOfLikes}</div>
+                      <p classname='Like' style={{padding:'5px',
+                       margin:'0', display:'flex',}}>
+                          <LikeThought thoughtId={post.id}/>
+                          <p className='numberofunlike'></p>
+                          {post.numberOfLikes}</p>
                           
-                          <div className='Unlike' style={{padding:'5px'}}>
-                              <UnLikeThought thoughtId={post.id} />{post.numberOfDislikes}</div>
+                          <p className='Unlike' style={{padding:'5px', display:'flex'}}>
+                            <UnLikeThought thoughtId={post.id} />
+                           <p className='numberofunlike'>
+                               {post.numberOfDislikes}</p>
+                        </p>
+                      
                       
                       </div>
-                      <hr />
+                      {/* <hr /> */}
                       
                     </div>
                     
                     
                 })
                 }
+                </div>
 
             </div>
         </div>

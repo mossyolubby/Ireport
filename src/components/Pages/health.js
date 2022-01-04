@@ -1,5 +1,7 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
+import './style.css';
+
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
 
@@ -34,19 +36,25 @@ class Health extends React.Component{
 
     
     render() {
+        this.state.posts.sort(function (a, b) {
+            return b.id - a.id;
+          });
     
     return (
         <container>
-            <h4 className='health-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Health News</h4>
-        <div className='allNews'>
-        
-            <div className='news'>
+            
+        <div className='News'>
+        <h4 className='politics-news' 
+        // style= {{display:'flex',justifyContent:'center', margin:'auto', }}
+        >
+            Health News</h4>
+            <div className=''>
                 {this.state.posts.map(function(post,{id}) {
-                return <div>
+                return <div className='News-content'>
+                      <h6 className="post-title">{post.title}</h6>
+                      <img className="image" src={post.imagePath} />
+                      <p className='postdes'>{post.description}</p>
                       
-                      <h4 className="list-group-item-heading">{post.title}</h4>
-                      <p className="list-group-item-text">{post.description}</p>
-                      <img className="image-group" src={post.imagePath} />
                       {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
                     </div>
                 })
@@ -57,4 +65,5 @@ class Health extends React.Component{
     )
 }
 }
+
 export default Health;

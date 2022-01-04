@@ -1,5 +1,6 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
+import './style.css';
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
 
@@ -37,16 +38,18 @@ class Sport extends React.Component{
     
     return (
         <container>
+            <div className='News'>
             <h4 className='sport-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Sport News</h4>
-        <div className='allNews'>
+        
         
             <div className='news'>
                 {this.state.posts.map(function(post,{id}) {
-                return <div>
+                return <div className= 'News-content'>
                       
-                      <h4 className="list-group-item-heading">{post.title}</h4>
-                      <p className="list-group-item-text">{post.description}</p>
-                      <img className="image-group" src={post.imagePath} />
+                      <h6 className="post-title">{post.title}</h6>
+                      <img className="image" src={post.imagePath} />
+                      <p className="postdes">{post.description}</p>
+                      
                       {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
                     </div>
                 })

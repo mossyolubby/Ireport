@@ -57,30 +57,45 @@ class Home extends Component{
     return (
         // <Container>
         <div className='allNews'>
-            <div className='news'>
+            <div className='news' style={{width: '18rem;'}}>
+                
                 {this.state.posts.map(function(post,index) {
-                return <div key={index}>
-                      <h5 className="news_title">{post.title}</h5>
-                      <p className="news-desc">{post.description}</p>
+                return <div className='content' key={index}>
+                    <div className='' >
+                    <div className = 'card-body'>
+                      <h5 className="news_title card-title">{post.title}</h5>
+                      <div className='image-group'>
+                     <img className="card-img-top" src={post.imagePath}
+                     />
+                    </div>
+                    <p className="news-desc card-text">{post.description}</p>
+                     
                       {/* <p className="news-desc">{post.areaOfReport}</p> */}
-                      <img className="image-group" src={post.imagePath} />
-
-                      <div className='likes'>
-                          <span className='Likes' style={{display:'flex'}}><Likes postId={post.id}/>{post.numberOfLikes}</span>
-                          <span className='Unlike'><UnLike postId={post.id} />{post.numberOfDislikes}</span>
-                          <span style={{paddingLeft: '10px', fontSize: '14px', margin:'0px'}}>Comments{post.numberOfComments}</span>
+                        <div className='reaction'> 
+                          <span className='Likes' style={{display:'flex', padding:'10px'}}>
+                         <Likes postId={post.id}/>
+                         <span className='numberoflikes' style={{paddingLeft:'7px', marginTop:'4px'}}>{post.numberOfLikes} </span>
+                          </span>
+                           <span className='Unlike' style={{display:'flex', padding:'8px', marginTop:'4px', marginLeft:'0'}}><UnLike postId={post.id} />
+                           <span className='numberofUnlike' style={{paddingLeft:'7px', marginTop:'0px'}}>{post.numberOfDislikes}</span>
+                           </span>
+                          <span style={{paddingLeft: '10px', fontSize: '12px', marginTop:'14px'}}>Comments
+                          <span className='numberofcomment' style={{paddingLeft:'7px', marginTop:'0px' }}>{post.numberOfComments}</span>
+                          </span> 
+                        </div> 
+                    </div>
+                      
+                      {/* <CommentPost postId={post.id} />
+                      <ShowComment postId={post.id} /><span style={{fontSize:'14px'}}>{post.user.username}</span> */}
+                      
+                      {/* <hr style={{margin:'0'}}/>  */}
                       </div>
-                      
-                      <CommentPost postId={post.id} />
-                      <ShowComment postId={post.id} /><span style={{fontSize:'14px'}}>{post.user.username}</span>
-                      
-                      <hr style={{margin:'0'}}/>
-                      
                     </div>
                     
                     
                 })
                 }
+            
 
             </div>
            

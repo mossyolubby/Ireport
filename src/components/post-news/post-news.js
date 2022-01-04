@@ -80,13 +80,13 @@ console.log(response.data, self.state.areaofreport);
         console.log("htitle", this.state.title);
         console.log("jareaOfReport", this.state.selectedareaofreport);
         console.log("description", this.state.description);
-        console.log("image" , this.state.image);
+        console.log("image" , this.state.image, this.state.image.length, this.state.image.name);
         const formData = new FormData();
         formData.append("title", this.state.title);
         formData.append("areaOfReport", this.state.selectedareaofreport);
         formData.append("description", this.state.description);
         
-        if(this.state.image && this.state.image.length > 0){
+        if(this.state.image && this.state.image.name){
           console.log('adding');
           formData.append("image", this.state.image);
         }
