@@ -4,6 +4,8 @@ import React,{Component} from 'react';
 import './thought-and-opinion.css'
 import LikeThought from './thought-like';
 import UnLikeThought from './thought-unlike';
+import {FaCircle} from 'react-icons/fa';
+import { IconContext } from "react-icons";
 //import AuthService from '../../../services/auth.service'
 
 
@@ -66,7 +68,11 @@ class ShowThought extends Component{
                 {this.state.posts.map(function(post,index) {
                 return <div className='slotnews' key={index}>
                    
-                    <p className="thought">{post.user.username} </p>
+                    <p className="thought">{post.user.username} 
+                    <IconContext.Provider value={{ className: "facircle"}}>    
+                     <FaCircle/>
+                    </IconContext.Provider>
+                    </p>
                     <div className= 'newsopinion'>
                     <img
                      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -81,7 +87,7 @@ class ShowThought extends Component{
                       <p classname='Like' style={{padding:'5px',
                        margin:'0', display:'flex',}}>
                           <LikeThought thoughtId={post.id}/>
-                          <p className='numberofunlike'></p>
+                          <p className='numberoflike'></p>
                           {post.numberOfLikes}</p>
                           
                           <p className='Unlike' style={{padding:'5px', display:'flex'}}>

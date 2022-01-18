@@ -2,7 +2,7 @@
     display:flex;
     /* grid-template-columns:repeat(1, 1fr); 
     grid-gap: 50px; */
-    width:400px;
+    width:550px;
     /* padding:30px; */
     border: 1px solid lightgray;
     border-radius:5px;
@@ -21,13 +21,13 @@
     color: #ededf3;
     font-size: 16px;
     font-weight: 700;
-    padding: 10px;
-    width:200px;
+    padding:10px;
+    width:400px;
     margin-bottom:10px;
-    justify-items: center;
+    justify-content: center;
     margin:auto;
-    margin-left: 30%;
-    margin-bottom: 10px;
+    margin-top:10px;
+    
 
 }
 
@@ -45,14 +45,25 @@
 .newsopinion{
     display:flex;
     flex-direction: row;
+    /* background-color: brown; */
+    width:75%;
+    /* margin-top:1px; */
+    margin:auto;
 }
 
 .thought{
     color: #333;
-    margin:auto;
-    padding:10px;
+    margin-left: 150px;
+    padding-top:10px;
     font-size: 12px;
     font-weight: 900;
+    width:30%;
+    /* background-color: blueviolet; */
+}
+
+.facircle{
+    color:red;
+    padding-left:3px;
 }
 
 /* .slothnews img{
@@ -69,8 +80,8 @@
     padding:5px;
     width: 70%;
     line-height: 20px;
-    margin-top: 15px;
-    margin-left:10px;
+    /* margin-top: 15px; */
+    margin-left:1px;
     font-size:14px;
 }
 
@@ -79,6 +90,10 @@
     flex-direction: row;
     font-size: 14px;
     margin-left: 27%;
+    height:30px;
+    width:200px;
+    margin: auto;
+    /* background-color: blue; */
 
 }
 .likethought :hover{
@@ -88,8 +103,9 @@
 .numberofunlike{
     margin-top:0px;
     margin-left:3px;
+    background-color: brown;
 }
 
-.Likes .Unlike{
+.Like .Unlike{
     background-color: blue;
 }

@@ -38,18 +38,22 @@ class Sport extends React.Component{
     
     return (
         <container>
-            <div className='News'>
-            <h4 className='sport-news' style= {{display:'flex',justifyContent:'center', margin:'auto', }}>Sport News</h4>
-        
-        
-            <div className='news'>
+            
+        <div className='News'>
+        <h4 className='politics-news' 
+        // style= {{display:'flex',justifyContent:'center', margin:'auto', }}
+        >
+            Sport News</h4>
+            <div className=''>
                 {this.state.posts.map(function(post,{id}) {
-                return <div className= 'News-content'>
-                      
+                return <div className='News-content'>
+                    <img className="image" src={post.imagePath} />
+                     
+                      <div className = 'content-group'>
+                          {/* <FaCircle/> */}
                       <h6 className="post-title">{post.title}</h6>
-                      <img className="image" src={post.imagePath} />
-                      <p className="postdes">{post.description}</p>
-                      
+                      <p className='postdes'>{post.description}</p>
+                      </div>
                       {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
                     </div>
                 })

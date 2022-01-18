@@ -85,10 +85,11 @@ class App extends React.Component{
         <Route path='/login' component={Login} />
         <Route path='/profile' component={Profile} />
         <Route path='/change-password' component={ChangePassword} />
-        <Route path='/comment' component={CommentPost} />
+        <Route path='/comment/:postId' component={CommentPost} />
+        {/* <Route path='/comment' component={CommentPost} /> */}
         <Route path= '/verify' component ={Verify} />
         <Route path= '/successful-register' component ={SuccessfulRegister} />
-        <Route path= '/comment-on-post' component = {ShowComment} />
+        {/* <Route path= '/comment-on-post' component = {ShowComment} /> */}
       
         
         

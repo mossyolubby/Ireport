@@ -12,13 +12,45 @@ class CommentPost extends React.Component {
     constructor() {
     super();
     
-    //console.log("PROPS ", this.props);
     this.state = {
     review: " ",
-    //postId: this.props.postId,
+     postId: null,
+     posts: [],
+     comments: [],
     commentLine: [{ commentId:"", text: "",}],
    
       };
+    }
+    componentDidMount(){
+        console.log("PROPS ", this.props.match.params.postId);
+
+        const postId = this.props.match.params.postId;
+        this.setState({
+            postId: postId
+        });
+
+        const self= this;
+
+        axios.get(apiUrl + "all/comments/" + postId, {
+         
+        })
+        .then(function(response){
+
+        const savedComments = response.data.map(res=>{
+            return res.comment;
+        })
+        self.setState({
+            posts:response.data,
+            comments: savedComments
+        })
+
+
+        console.log(savedComments, "savedcomments")
+        console.log(response, "RETRIEVED COMMENTS")
+            
+        }).catch(function(error){
+            console.log('error is', error);
+        })
     }
  handleCommentValue = (e) =>{
      this.setState({
@@ -39,7 +71,7 @@ class CommentPost extends React.Component {
         
      submitCommentLine = (e) => {
          const header = authHeader();
-         const postId = this.props.postId;
+         const postId = this.state.postId;
          console.log(this.state.review,postId,  "REVIEW")
          axios.post(apiUrl + `user/comment/add/${postId}/?review=` + this.state.review, {
             //  params:{
@@ -47,7 +79,14 @@ class CommentPost extends React.Component {
             //  }
          },{headers:header})
          e.preventDefault();
-         this.setCommentLine();
+         const updatedComment = [...this.state.comments];
+         updatedComment.push(this.state.review);
+
+         this.setState({
+             comments: updatedComment,
+             review: ""
+         })
+
      };
 
      enterCommentLine = (e) => {
@@ -61,8 +100,12 @@ class CommentPost extends React.Component {
  render(){
      return(
          <div>
+             {this.state.comments && this.state.comments.map(comment => {
+                 return <div>{comment}</div>
+             })}
              <CommentBox
              review ={this.state.review}
+             postId={this.state.postId}
              handleCommentValue={this.handleCommentValue}
              enterCommentLine = {this.enterCommentLine}
              submitCommentLine= {this.submitCommentLine} 
@@ -78,10 +121,19 @@ class CommentBox extends React.Component{
         super(props);
 
         this.state = {
-            currentUser: AuthService.getCurrentUser()
+            currentUser: AuthService.getCurrentUser(),
+            postId: this.props.postId,
+            posts:[]
         };
-
     }
+
+
+    componentDidMount(){
+       // debugger;
+        
+        
+    }
+
       render(){
         const {currentUser} = this.state;
           const {review,handleCommentValue,
@@ -110,6 +162,8 @@ class CommentBox extends React.Component{
                   className="comments-button"
                   id={changeCommentButtonStyle()}
                   disabled= {enableCommentButton()}>Post comment</button> }
+
+                  
               </div>
           
           )

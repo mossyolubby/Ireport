@@ -3,8 +3,6 @@ import axios from 'axios'
 
 
 const apiUrl = "https://i-report-project.herokuapp.com/api/"
-
-
 class Entertainment extends React.Component{
 
     constructor(props){
@@ -51,10 +49,13 @@ class Entertainment extends React.Component{
             <div className=''>
                 {this.state.posts.map(function(post,{id}) {
                 return <div className='News-content'>
+                    <img className="image" src={post.imagePath} />
+                     
+                      <div className = 'content-group'>
+                          {/* <FaCircle/> */}
                       <h6 className="post-title">{post.title}</h6>
-                      <img className="image" src={post.imagePath} />
                       <p className='postdes'>{post.description}</p>
-                      
+                      </div>
                       {/* <input type="hidden" id="postId" name="postId" value={post.id}/> */}
                     </div>
                 })

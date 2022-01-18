@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import './comment.css';
+import CommentPost from '../post-news/comment';
 //import CommentPost from '../post-news/comment';
 
 

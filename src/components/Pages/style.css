@@ -39,9 +39,12 @@ h4{
     padding:10px;
     /* border-bottom: 1px solid lightgray; */
     display:inline-block;
-    font-weight: 700;
+    font-weight: 600;
     font-size: medium;
     width: 100%;
+    display:flex;
+    margin-left: 30px;
+    
 }
 
 .News-content{
@@ -49,13 +52,14 @@ h4{
     background-color: whitesmoke;
     margin-bottom:5px;
     padding:12px;
-    
+    max-height: fit-content;
+    display: flex;
     
 
     /* background-color: cyan; */
     
 }
-
+/* 
 .postdes{
     padding-top:2px;
     padding:3px;
@@ -66,10 +70,24 @@ h4{
 
 } 
 
-
+/*
 .image{
-    max-height:400px;
-    max-width: 450px;
+    max-height:350px;
+    width: 100%;
     display: flex;
     margin: auto;
+} */
+
+.image{
+    max-width:250px;
+    max-height:200px;
+}
+
+.content-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.postdes{
+    margin-left:40px;
 }

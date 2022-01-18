@@ -1,88 +1,100 @@
 .navbar{
-margin-top:120px;
-background-color: blue;
-padding:20px;
-padding-bottom: 0;
-margin-left: 0;
-}
-
-.navbar-container{
-    display:flex;
-    flex-direction:row;
-    background-color: chartreuse;
+    margin-top:120px;
+    /* background-color: blue; */
+    padding:20px;
     padding-bottom: 0;
+    margin-left: 0;
+    }
     
-
-
-}
-
-.ireport-logo{
-position: absolute;
-width: 50px;
-height:10px;
-left: 10px;
-margin-top:0px;
-margin-left: 50px;
-
-
-}
-
-.nav-menu{
-list-style-type: none;
-  padding:10px;
-  overflow: hidden;
-  background-color: #01061e;
-  display:flex;
-  margin-left:80px;
-  margin-bottom: 0;
-}
-
-.nav-item{
-    padding:5px;
+    .navbar-container{
+        display:flex;
+        flex-direction:row;
+        /* background-color: chartreuse; */
+        padding-bottom: 0;
+        
     
-}
-
-.nav-Links{
-    text-decoration: none;
-    color: white;
-    font-weight:bolder;
-    padding:5px;
-}
-.nav-Links-post{
-      margin-left:150px;
-      font-weight: bolder;
-      font-size:medium;
-}
-
-.nav-Links-mobile{
-    color:cornsilk;
-    margin-left:0;
-}
-
-.btn{
-    padding:3px;
-    width:100px;
-    background-color: cornsilk;
-}
-
-.nav-Links:hover{
-    color:crimson
-
-}
-
-#nblink{
     
-    font-weight: bold;
-    font-size: 18px;
-    padding:10px;
-}
-
-#logo{
-    background-color: blanchedalmond;
-    margin-left:10px;
-}
-
-/* .mr-auto{
-    padding:10px;
-} */
-
+    }
+    
+    .ireport-logo{
+    position: absolute;
+    width: 50px;
+    height:10px;
+    left: 10px;
+    margin-top:0px;
+    margin-left: 50px;
+    
+    
+    }
+    
+    .nav-menu{
+    list-style-type: none;
+      padding:10px;
+      overflow: hidden;
+      background-color: #01061e;
+      display:flex;
+      margin-left:80px;
+      margin-bottom: 0;
+    }
+    
+    .nav-item{
+        padding:5px;
+        
+    }
+    
+    .nav-Links{
+        text-decoration: none;
+        color: white;
+        font-weight:bolder;
+        padding:5px;
+    }
+    .nav-Links-post{
+          margin-left:150px;
+          font-weight: bolder;
+          font-size:medium;
+    }
+    
+    .nav-Links-mobile{
+        color:cornsilk;
+        margin-left:0;
+    }
+    
+    #btn{
+        padding:3px;
+        width:100px;
+        background-color: cornsilk;
+        color:black;
+        font-weight: 600;
+        border-color: crimson;
+        font-size: 16px;
+    
+       
+    }
+    
+    .nav-Links:hover{
+        color:crimson
+    
+    }
+    
+    #nblink{
+        
+        font-weight: bold;
+        font-size: 15px;
+        padding:10px;
+        color:black;
+    }
+    
+    #logo{
+        background-color: blanchedalmond;
+        margin-left:10px;
+    }
+    
+    
+    .post{
+       
+    }
+    /* .mr-auto{
+        padding:10px;
+    } */
+    
+    

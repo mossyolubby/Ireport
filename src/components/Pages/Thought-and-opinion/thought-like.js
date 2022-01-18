@@ -1,6 +1,7 @@
 import React from 'react';
 import {FaThumbsDown} from 'react-icons/fa';
 import {AiOutlineHeart} from 'react-icons/ai'
+import { IconContext } from "react-icons";
 import axios from 'axios';
 import authHeader from '../../../services/auth-header'
 
@@ -37,7 +38,9 @@ class LikeThought extends React.Component{
              <button
              style={{margin:'0', fontSize:'12px',border:'none', BackgroundColor:'white',}}
              onClick={this.addLikeThought}>
+               <IconContext.Provider value={{ color: ""}}> 
                <AiOutlineHeart/>
+               </IconContext.Provider>
                Like</button>
            
             </div>

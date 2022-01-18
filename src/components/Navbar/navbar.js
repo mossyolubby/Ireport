@@ -57,7 +57,7 @@ export default class NavBar extends Component{
                  {/* <div className="col-md-12"> */}
                    
                      
-                         <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
+                         <Navbar bg="light" variant="dark" expand="lg" sticky="top" >
                              <Navbar.Brand href="/" id="logo"><img src='images/ireportlogo.png' alt='Ireport logo' width='100px'/></Navbar.Brand>
                              <Navbar.Toggle aria-controls="basic-navbar-nav" />
                              <Navbar.Collapse id="basic-navbar-nav">
@@ -73,7 +73,7 @@ export default class NavBar extends Component{
                                  {/* {console.log(currentUser)} */}
                                  {currentUser &&<Nav.Link href="/thought-and-opinion" id="nblink">Thought&Opinion</Nav.Link>}
                                  
-                                  {currentUser &&<Nav.Link href="/post" className='post'><Button className='btn'>Post</Button></Nav.Link>}                
+                                  {currentUser &&<Nav.Link href="/post" className='post'><Button id='btn'>Post News</Button></Nav.Link>}                
                                   
                                   {currentUser ? (
                                   <div className="navbar-nav ml-auto">
